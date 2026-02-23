@@ -80,11 +80,6 @@ export function Header() {
                 className="h-8 w-auto"
               />
             )}
-
-            {/* Optionnel : garder le texte à côté */}
-            <span className="font-mono text-sm font-medium tracking-wider text-[var(--color-accent)]">
-              {PROFILE.name.toLowerCase().replace(' ', '_')}.dev
-            </span>
           </a>
 
           {/* Nav desktop */}
