@@ -8,6 +8,7 @@ import { ArchitectureDiagram } from '@/components/ArchitectureDiagram'
 import { ScrollProgress } from '@/components/ScrollProgress'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
+import { on } from 'process'
 
 interface Props {
   project: Project
@@ -15,7 +16,7 @@ interface Props {
   nextProject: Project | null
 }
 
-// ── Couleurs des nodes d'architecture ─────────────────
+{/* ── Couleurs des nodes d'architecture ───────────────── */}
 const NODE_COLORS = {
   client:  { bg: 'bg-[var(--color-accent)]/10',   border: 'border-[var(--color-accent)]/30',   text: 'text-[var(--color-accent)]'   },
   server:  { bg: 'bg-emerald-500/10',              border: 'border-emerald-500/30',             text: 'text-emerald-400'             },
@@ -24,7 +25,7 @@ const NODE_COLORS = {
   infra:   { bg: 'bg-[var(--color-muted)]/10',     border: 'border-[var(--color-muted)]/30',    text: 'text-[var(--color-muted)]'    },
 }
 
-// ── Status labels ──────────────────────────────────────
+{/* ── Status labels ──────────────────────────────────────*/}
 const STATUS_LABELS = { 'terminé': 'TERMINÉ', 'en cours': 'EN COURS', 'oss': 'OSS', 'prototype': 'PROTOTYPE' }
 const STATUS_COLORS = {
   'terminé':  'text-[var(--color-success)] border-[var(--color-success)]/30 bg-[var(--color-success)]/8',
@@ -296,7 +297,7 @@ export function ProjectPageClient({ project, prevProject, nextProject }: Props) 
   )
 }
 
-// ── Sous-composants ────────────────────────────────────
+{/* ── Sous-composants ────────────────────────────────────*/}
 
 function CaseSection({
   id, label, title, children
@@ -370,7 +371,6 @@ function ScreenshotBlock({
         {!error && (
           <div className="absolute inset-0 p-3 md:p-4">
             {isMobile ? (
-              // Mode mobile : on garde le grand fond, mais on centre un viewport portrait
               <div className="h-full w-full flex items-center justify-center">
                 <div className="relative h-full w-auto aspect-[9/19.5] max-w-[42%] md:max-w-[38%]">
                   <Image
@@ -386,7 +386,6 @@ function ScreenshotBlock({
                 </div>
               </div>
             ) : (
-              // Mode desktop : plein cadre
               <Image
                 src={shot.src}
                 alt={shot.alt}
@@ -418,7 +417,7 @@ function ScreenshotBlock({
   )
 }
 
-// ── Icons inline ───────────────────────────────────────
+{/* ── Icons inline ───────────────────────────────────────*/}
 function GitHubIcon() {
   return (
     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">

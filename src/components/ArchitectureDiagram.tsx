@@ -6,7 +6,6 @@ interface Props {
   diagram: DiagramType
 }
 
-// ── Couleurs par type de node ──────────────────────────
 const NODE_STYLES: Record<ArchitectureNode['type'], {
   bg: string; border: string; text: string; badge: string
 }> = {
@@ -17,13 +16,11 @@ const NODE_STYLES: Record<ArchitectureNode['type'], {
   infra:   { bg: '#64748B',  border: '#64748B', text: '#64748B',  badge: 'INFRA'   },
 }
 
-// ── Layout auto en grille ──────────────────────────────
-// Distribue les nodes sur 2 rangées max
 function computeLayout(nodes: ArchitectureNode[]) {
   const cols = Math.min(nodes.length, 3)
   const rows = Math.ceil(nodes.length / cols)
-  const W = 140  // node width
-  const H = 72   // node height
+  const W = 140  
+  const H = 72   
   const GAP_X = 80
   const GAP_Y = 80
   const CANVAS_W = cols * W + (cols - 1) * GAP_X + 40
@@ -33,7 +30,6 @@ function computeLayout(nodes: ArchitectureNode[]) {
   nodes.forEach((node, i) => {
     const col = i % cols
     const row = Math.floor(i / cols)
-    // Centrer la dernière rangée incomplète
     const rowCount = i < cols * (rows - 1) ? cols : nodes.length - cols * (rows - 1)
     const rowOffset = (cols - rowCount) * (W + GAP_X) / 2
     positions[node.id] = {
@@ -119,18 +115,15 @@ export function ArchitectureDiagram({ diagram }: Props) {
             const style = fromNode ? NODE_STYLES[fromNode.type] : null
             const markerColor = fromNode?.type ?? 'default'
 
-            // Points de connexion (centre bas → centre haut si même colonne, sinon côté)
             const fx = from.x + W / 2
             const fy = from.y + H / 2
             const tx = to.x + W / 2
             const ty = to.y + H / 2
 
-            // Calcul des points d'entrée/sortie sur les bords du node
             const dx = tx - fx
             const dy = ty - fy
             const angle = Math.atan2(dy, dx)
 
-            // Sortie depuis le bord du from node
             const halfW = W / 2
             const halfH = H / 2
             const ex = fx + Math.cos(angle) * halfW
@@ -138,7 +131,6 @@ export function ArchitectureDiagram({ diagram }: Props) {
             const ex2 = tx - Math.cos(angle) * halfW
             const ey2 = ty - Math.sin(angle) * halfH
 
-            // Courbe de Bézier
             const midX = (ex + ex2) / 2
             const midY = (ey + ey2) / 2
             const cpX = midX
@@ -146,7 +138,6 @@ export function ArchitectureDiagram({ diagram }: Props) {
 
             const pathD = `M ${ex} ${ey} Q ${cpX} ${cpY} ${ex2} ${ey2}`
 
-            // Label position
             const dir = i % 2 === 0 ? 1 : -1
             const labelX = midX + dir * 18
             const labelY = (cpY - 8) + dir * 10

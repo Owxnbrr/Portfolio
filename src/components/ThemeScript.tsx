@@ -1,4 +1,3 @@
-// Inline script — exécuté AVANT le render React pour éviter le flash de thème
 export function ThemeScript() {
   const script = `
     (function() {

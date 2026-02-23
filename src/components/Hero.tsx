@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { PROFILE } from '@/data/portfolio'
 
-// Séquences du typewriter
 const ROLES = [
   'développeur web',
   'alternant React/Next.js',
@@ -19,7 +18,6 @@ function useTypewriter(strings: string[], speed = 70, pause = 1600) {
   const deleting = useRef(false)
 
   useEffect(() => {
-    // Blink cursor
     const blinkId = setInterval(() => setCursor(c => !c), 530)
     return () => clearInterval(blinkId)
   }, [])

@@ -12,15 +12,13 @@ Aujourd’hui, je cherche des missions/opportunités où je peux livrer vite, bi
   location: 'Amiens, France',
   buildHash: 'a3f2c8d',
 }
-// ── Type pour les screenshots ─────────────────────────
 export type ProjectScreenshot = {
-  src: string          // chemin dans /public/projects/{id}/
+  src: string         
   alt: string
   caption?: string
   format?: 'mobile' | 'desktop'
 }
 
-// ── Type pour les blocs d'architecture ────────────────
 export type ArchitectureNode = {
   id: string
   label: string
@@ -42,32 +40,22 @@ export type ProjectVideo = {
   caption?: string
   poster?: string
 }
-// ── Étude de cas complète (optionnel par projet) ───────
 export type CaseStudy = {
-  // Contexte & problème
   context: {
-    situation: string      // La situation de départ
-    problem: string        // Le problème à résoudre
-    goals: string[]        // Les objectifs mesurables
+    situation: string   
+    problem: string      
+    goals: string[]  
   }
 
-  // Architecture (optionnel)
   architecture?: {
     description: string
     diagram: ArchitectureDiagram
   }
 
-  // Vidéo / motion (optionnel)
   video?: ProjectVideo
-
-  // Screenshots (optionnel)
   screenshots?: ProjectScreenshot[]
-
-  // Durée du projet
-  duration: string         // ex: "3 semaines"
-
-  // Rôle tenu
-  role: string             // ex: "Développeur fullstack solo"
+  duration: string    
+  role: string   
 }
 export type Project = {
   id: string
@@ -84,7 +72,7 @@ export type Project = {
     demo?: string
     github?: string
   }
-  gradient: string // CSS gradient pour le thumbnail placeholder
+  gradient: string
   caseStudy?: CaseStudy
 }
 
@@ -190,7 +178,6 @@ Objectif : permettre de parcourir rapidement les catégories/collections et déc
     demo: 'https://ippcom-goodies.netlify.app/',
     github: 'https://github.com/Owxnbrr/Boutique-Objet-Publicit-IPP',
   },
-  // garde juste la couleur : gradient sobre, cohérent avec un projet "pro"
   gradient: 'linear-gradient(135deg, #0EA5E9 0%, #0B1A2A 100%)',
 
   caseStudy: {
@@ -372,9 +359,9 @@ Le rendu final intègre une vidéo d’avion en arrière-plan pour le compositin
 
 export type Skill = {
   name: string
-  icon: string // emoji ou code initiales
+  icon: string 
   level: '// daily' | '// learning' | '// familiar'
-  projects?: string[] // IDs des projets qui l'utilisent
+  projects?: string[] 
 }
 
 export type SkillGroup = {
