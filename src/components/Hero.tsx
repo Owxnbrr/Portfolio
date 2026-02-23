@@ -69,13 +69,12 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-[100svh] flex items-center pt-14"
-      aria-label="Introduction"
+      className="relative min-h-[100svh] md:min-h-screen flex items-start md:items-center pt-20 md:pt-14 overflow-hidden"      aria-label="Introduction"
     >
       {/* Glow décoratif */}
       <div className="hero-glow" aria-hidden="true" />
 
-      <div className="container-main relative z-10 py-24">
+      <div className="container-main relative z-10 py-12 md:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_440px] gap-16 items-center">
 
           {/* ── Colonne gauche ── */}
@@ -207,12 +206,14 @@ export function Hero() {
         </div>
 
         {/* Scroll indicator */}
-        <div className="
-          absolute bottom-8 left-1/2 -translate-x-1/2
-          flex flex-col items-center gap-2
-          animate-fade-in
-          text-[var(--color-muted)]
-        "
+        <div
+          className="
+            hidden md:flex
+            absolute bottom-8 left-1/2 -translate-x-1/2
+            flex-col items-center gap-2
+            animate-fade-in
+            text-[var(--color-muted)]
+          "
           style={{ animationDelay: '800ms' }}
           aria-hidden="true"
         >
