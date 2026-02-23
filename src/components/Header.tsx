@@ -65,21 +65,26 @@ export function Header() {
 
           {/* Logo */}
           <a
-            href="#"
-            className="flex items-center gap-2 hover:opacity-80 transition-opacity duration-150"
-            aria-label="Retour en haut"
-          >
-            {/* Logo version selon thème */}
-            {mounted && (
-              <Image
-                src={theme === 'dark' ? '/logo-light.svg' : '/logo-dark.svg'}
-                alt="Logo"
-                width={34}
-                height={34}
-                priority
-                className="h-8 w-auto"
-              />
-            )}
+          href="#"
+          className="flex items-center gap-2 hover:opacity-80 transition-opacity duration-150"
+          aria-label="Retour en haut"
+          onClick={() => setMenuOpen(false)}
+        >
+          {mounted ? (
+            <Image
+              src={theme === 'dark'
+                ? '/project-assets/logo-light.svg'
+                : '/project-assets/logo-dark.svg'}
+              alt="Logo"
+              width={34}
+              height={34}
+              priority
+              className="h-8 w-auto"
+            />
+          ) : (
+            // Fallback SSR pour éviter un "trou" avant le mount
+            <div className="h-8 w-8 rounded bg-[var(--color-surface)] border border-[var(--color-border)]" />
+          )}
           </a>
 
           {/* Nav desktop */}
