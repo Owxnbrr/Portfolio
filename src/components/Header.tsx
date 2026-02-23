@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useTheme } from '@/hooks/useTheme'
 import { PROFILE } from '@/data/portfolio'
+import Image from 'next/image'
 
 const NAV_LINKS = [
   { label: 'Projets',      href: '#projects' },
@@ -65,10 +66,25 @@ export function Header() {
           {/* Logo */}
           <a
             href="#"
-            className="font-mono text-sm font-medium tracking-wider text-[var(--color-accent)] hover:opacity-80 transition-opacity duration-150"
+            className="flex items-center gap-2 hover:opacity-80 transition-opacity duration-150"
             aria-label="Retour en haut"
           >
-            {PROFILE.name.toLowerCase().replace(' ', '_')}.dev
+            {/* Logo version selon thème */}
+            {mounted && (
+              <Image
+                src={theme === 'dark' ? '/logo-light.svg' : '/logo-dark.svg'}
+                alt="Logo"
+                width={34}
+                height={34}
+                priority
+                className="h-8 w-auto"
+              />
+            )}
+
+            {/* Optionnel : garder le texte à côté */}
+            <span className="font-mono text-sm font-medium tracking-wider text-[var(--color-accent)]">
+              {PROFILE.name.toLowerCase().replace(' ', '_')}.dev
+            </span>
           </a>
 
           {/* Nav desktop */}
