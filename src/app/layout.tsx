@@ -56,10 +56,9 @@ export const metadata: Metadata = {
       'Portfolio de Noah Bucheton, développeur web junior spécialisé frontend (React, Next.js).',
     // images: ['/og-image.jpg'],
   },
-  icons: {
+   icons: {
     icon: '/favicon.ico',
-    // shortcut: '/favicon.ico',
-    // apple: '/apple-touch-icon.png',
+    shortcut: '/favicon.ico',
   },
   category: 'technology',
 }
