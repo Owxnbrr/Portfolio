@@ -260,7 +260,7 @@ Prototype interactif réalisé sur Figma avec transitions et micro-interactions 
   status: 'prototype',
   year: 2024,
   links: {
-    demo: 'TON_LIEN_FIGMA_PROTO',
+    demo: 'https://www.figma.com/proto/DpexmPGuIVejbt3G4GjNVO/Discollection-Noah?page-id=0%3A1&node-id=63-436&p=f&viewport=-1692%2C638%2C0.3&t=eCm1xlS7mEPcNwra-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=63%3A436',
   },
   gradient: 'linear-gradient(135deg, #60A5FA 0%, #1E3A8A 100%)',
   caseStudy: {
