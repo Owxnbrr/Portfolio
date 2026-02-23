@@ -91,7 +91,7 @@ export function Hero() {
             <h1
               className="
                 font-display font-extrabold leading-[0.95]
-                text-5xl md:text-[5rem]
+                text-4xl md:text-[5rem]
                 tracking-[-0.04em]
                 text-[var(--color-text)]
                 animate-fade-up
