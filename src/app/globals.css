@@ -1,0 +1,282 @@
+/* ═══════════════════════════════════════════════════════
+   PORTFOLIO — GLOBAL STYLES
+   Tokens → Thème A (dark) + Thème B (light/blueprint)
+   ═══════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── 1. CSS CUSTOM PROPERTIES — THÈME DARK (défaut) ─── */
+:root,
+[data-theme="dark"] {
+  /* Couleurs */
+  --color-bg:      #0A0F1E;
+  --color-surface: #111827;
+  --color-text:    #E2E8F0;
+  --color-muted:   #64748B;
+  --color-accent:  #0EA5E9;
+  --color-border:  #1E293B;
+  --color-danger:  #EF4444;
+  --color-success: #10B981;
+
+  /* Accent RGB (pour les transparences) */
+  --color-accent-rgb: 14, 165, 233;
+
+  /* Grid bg pattern (dot grid) */
+  --grid-color: rgba(255,255,255,0.035);
+  --grid-size: 32px;
+
+  /* Fonts */
+  --font-display: 'Syne', system-ui, sans-serif;
+  --font-sans:    'Geist', system-ui, sans-serif;
+  --font-mono:    'Geist Mono', 'Menlo', monospace;
+
+  /* Scrollbar */
+  color-scheme: dark;
+}
+
+/* ── 2. CSS CUSTOM PROPERTIES — THÈME LIGHT (blueprint) */
+[data-theme="light"] {
+  --color-bg:      #EFF6FF;
+  --color-surface: #FFFFFF;
+  --color-text:    #0F172A;
+  --color-muted:   #475569;
+  --color-accent:  #0369A1;
+  --color-border:  #BFDBFE;
+  --color-danger:  #DC2626;
+  --color-success: #059669;
+
+  --color-accent-rgb: 3, 105, 161;
+
+  /* Blueprint grid — lignes plutôt que dots */
+  --grid-color: rgba(147,197,253,0.12);
+  --grid-size: 40px;
+
+  color-scheme: light;
+}
+
+/* ── 3. BASE ────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.65;
+  /* Transition thème — 300ms sur toutes les propriétés de couleur */
+  transition:
+    background-color 300ms ease,
+    color 300ms ease;
+}
+
+/* Background grid pattern */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, var(--grid-color) 1px, transparent 1px);
+  background-size: var(--grid-size) var(--grid-size);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── 4. SCROLLBAR CUSTOM ────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--color-bg); }
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--color-muted); }
+
+/* ── 5. SÉLECTION ────────────────────────────────────── */
+::selection {
+  background: rgba(var(--color-accent-rgb), 0.25);
+  color: var(--color-text);
+}
+
+/* ── 6. FOCUS ACCESSIBLE ────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ── 7. TYPOGRAPHIE ─────────────────────────────────── */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--color-text);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+p, li { color: var(--color-text); }
+
+code, pre, .font-mono {
+  font-family: var(--font-mono);
+}
+
+/* ── 8. TRANSITIONS COULEUR SUR COMPOSANTS ──────────── */
+/* Appliqué globalement pour le toggle de thème */
+a,
+button,
+[class*="bg-"],
+[class*="border-"],
+[class*="text-"] {
+  transition-property: color, background-color, border-color, box-shadow;
+  transition-duration: 300ms;
+  transition-timing-function: ease;
+}
+
+/* ── 9. UTILITIES CUSTOM ─────────────────────────────── */
+@layer utilities {
+
+  /* Container centré */
+  .container-main {
+    width: 100%;
+    max-width: 1280px;
+    margin-inline: auto;
+    padding-inline: clamp(16px, 5vw, 80px);
+  }
+
+  /* Texte accent monospace */
+  .label-mono {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  /* Tag / badge techno */
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: rgba(var(--color-accent-rgb), 0.1);
+    border: 1px solid rgba(var(--color-accent-rgb), 0.2);
+    color: var(--color-accent);
+    transition: background 150ms ease, border-color 150ms ease;
+  }
+  .tag:hover {
+    background: rgba(var(--color-accent-rgb), 0.16);
+    border-color: rgba(var(--color-accent-rgb), 0.35);
+  }
+
+  /* Card base */
+  .card {
+    position: relative;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    transition:
+      border-color 200ms ease-out,
+      box-shadow 200ms ease-out,
+      transform 200ms ease-out;
+  }
+  .card:hover {
+    border-color: rgba(var(--color-accent-rgb), 0.3);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+    transform: translateY(-4px);
+  }
+
+  /* Scroll progress bar */
+  .scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    background: var(--color-accent);
+    z-index: 9999;
+    transform-origin: left;
+    transition: transform 100ms linear;
+  }
+
+  /* Gradient radial hero */
+  .hero-glow {
+    position: absolute;
+    bottom: -20%;
+    left: -10%;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(var(--color-accent-rgb), 0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* Révélation au scroll — état initial */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  .reveal.is-visible {
+    animation: fade-up 500ms cubic-bezier(0.4,0,0.2,1) forwards;
+  }
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+  .reveal-left.is-visible {
+    animation: slide-in-left 400ms cubic-bezier(0.4,0,0.2,1) forwards;
+  }
+
+  /* Stagger delays */
+  .delay-1 { animation-delay: 80ms; }
+  .delay-2 { animation-delay: 160ms; }
+  .delay-3 { animation-delay: 240ms; }
+  .delay-4 { animation-delay: 320ms; }
+  .delay-5 { animation-delay: 400ms; }
+  .delay-6 { animation-delay: 480ms; }
+
+  /* Hash ID projet */
+  .project-hash {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    color: var(--color-muted);
+    opacity: 0.5;
+    letter-spacing: 0.04em;
+  }
+
+  /* Blueprint border — thème light uniquement */
+  [data-theme="light"] .blueprint-line {
+    border-color: #93C5FD;
+  }
+}
+
+/* état initial : caché */
+.reveal .reveal-left {
+  opacity: 0;
+  transform: translateX(-12px);
+  transition: opacity 400ms ease, transform 400ms ease;
+  will-change: opacity, transform;
+}
+
+/* quand ScrollReveal active la section */
+.reveal.is-visible .reveal-left {
+  opacity: 1;
+  transform: translateX(0);
+}
