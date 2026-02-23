@@ -139,17 +139,17 @@ Le travail a porté sur la clarté de l’information, la hiérarchie visuelle e
     },
     screenshots: [
       {
-        src: '/projects/ipp-election/home-hero.png',
+        src: '/projets-assets/ipp-election/home-hero.png',
         alt: 'Accueil IPP Election — hero et CTA de commande',
         caption: 'Accueil — proposition de valeur claire et CTA vers le parcours de commande',
       },
       {
-        src: '/projects/ipp-election/products.png',
+        src: '/projets-assets/ipp-election/products.png',
         alt: 'Section produits électoraux IPP Election',
         caption: 'Produits — présentation des catégories et des contraintes métier (formats, paliers, options)',
       },
       {
-        src: '/projects/ipp-election/process.png',
+        src: '/projets-assets/ipp-election/process.png',
         alt: 'Étapes de commande IPP Election',
         caption: 'Parcours — étapes de commande simplifiées pour guider les mairies',
       },
@@ -224,22 +224,22 @@ Objectif : permettre de parcourir rapidement les catégories/collections et déc
 
     screenshots: [
       {
-        src: '/projects/ippcom-goodies/home.png',
+        src: '/projets-assets/ippcom-goodies/home.png',
         alt: 'Accueil IPPCom Goodies',
         caption: 'Accueil — proposition de valeur, CTA catalogue/devis et mise en avant des nouveautés'
       },
       {
-        src: '/projects/ippcom-goodies/categories.png',
+        src: '/projets-assets/ippcom-goodies/categories.png',
         alt: 'Catégories IPPCom Goodies',
         caption: 'Catégories — navigation par collections avec volumes de produits visibles'
       },
       {
-        src: '/projects/ippcom-goodies/catalog.png',
+        src: '/projets-assets/ippcom-goodies/catalog.png',
         alt: 'Catalogue IPPCom Goodies',
         caption: 'Catalogue — recherche produit et grille de cartes pour une exploration rapide'
       },
       {
-        src: '/projects/ippcom-goodies/contact.png',
+        src: '/projets-assets/ippcom-goodies/contact.png',
         alt: 'Page contact IPPCom Goodies',
         caption: 'Contact — informations de contact et formulaire de demande'
       },
@@ -277,43 +277,43 @@ Prototype interactif réalisé sur Figma avec transitions et micro-interactions 
       ],
     },
     video: {
-      src: '/projects/discollection/logo-animation.mp4',
+      src: '/projets-assets/discollection/logo-animation.mp4',
       title: 'Animation du logo',
       caption: 'Motion branding — vinyle animé utilisé dans l’introduction du prototype',
     },
     screenshots: [
       {
-        src: '/projects/discollection/home.png',
+        src: '/projets-assets/discollection/home.png',
         alt: 'Écran d’accueil Discollection (prototype mobile)',
         caption: 'Accueil mobile — univers visuel, branding et entrée dans le parcours',
         format: 'mobile',
       },
       {
-        src: '/projects/discollection/catalogue.png',
+        src: '/projets-assets/discollection/catalogue.png',
         alt: 'Écran catalogue Discollection (prototype mobile)',
         caption: 'Catalogue mobile — exploration des vinyles via une grille de contenus',
         format: 'mobile',
       },
       {
-        src: '/projects/discollection/login.png',
+        src: '/projets-assets/discollection/login.png',
         alt: 'Écran de connexion Discollection (prototype mobile)',
         caption: 'Connexion mobile — écran d’authentification du prototype',
         format: 'mobile',
       },
       {
-        src: '/projects/discollection/réseaux.png',
+        src: '/projets-assets/discollection/réseaux.png',
         alt: 'Écran de réseaux Discollection (prototype mobile)',
         caption: 'Réseaux mobile — écran de gestion des réseaux sociaux du prototype',
         format: 'mobile',
       },
       {
-        src: '/projects/discollection/profil.png',
+        src: '/projets-assets/discollection/profil.png',
         alt: 'Écran de profil Discollection (prototype mobile)',
         caption: 'Profil mobile — écran de gestion du profil utilisateur du prototype',
         format: 'mobile',
       },
       {
-        src: '/projects/discollection/scan.png',
+        src: '/projets-assets/discollection/scan.png',
         alt: 'Écran de scan Discollection (prototype mobile)',
         caption: 'Scan mobile — écran du résultat du scan d\'un vinyle du prototype',
         format: 'mobile',
@@ -350,7 +350,7 @@ Le rendu final intègre une vidéo d’avion en arrière-plan pour le compositin
       ],
     },
     video: {
-      src: '/projects/logo-motion-plane/logo-animation.mp4',
+      src: '/projets-assets/logo-motion-plane/logo-animation.mp4',
       caption: 'Animation finale — logo vectorisé, animé et composité sur fond vidéo',
     },
   },
