@@ -71,15 +71,12 @@ export function Hero() {
       id="hero"
       className="relative min-h-[100svh] md:min-h-screen flex items-start md:items-center pt-20 md:pt-14 overflow-hidden"      aria-label="Introduction"
     >
-      {/* Glow décoratif */}
       <div className="hero-glow" aria-hidden="true" />
 
       <div className="container-main relative z-10 py-12 md:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_440px] gap-16 items-center">
 
-          {/* ── Colonne gauche ── */}
           <div>
-            {/* Eyebrow */}
             <p
               className="label-mono mb-6 animate-fade-in"
               style={{ animationDelay: '0ms' }}
@@ -87,7 +84,6 @@ export function Hero() {
               // développeur web & alternant
             </p>
 
-            {/* H1 */}
             <h1
               className="
                 font-display font-extrabold leading-[0.95]
@@ -105,7 +101,6 @@ export function Hero() {
               ))}
             </h1>
 
-            {/* Tagline */}
             <p
               className="
                 mt-6 text-lg text-[var(--color-muted)] max-w-[480px]
@@ -116,7 +111,6 @@ export function Hero() {
               {PROFILE.tagline}
             </p>
 
-            {/* Typewriter */}
             <div
               className="
                 mt-5 font-mono text-base text-[var(--color-text)]
@@ -134,7 +128,6 @@ export function Hero() {
               />
             </div>
 
-            {/* CTA row */}
             <div
               className="
                 mt-10 flex flex-wrap gap-4
@@ -177,7 +170,6 @@ export function Hero() {
               </a>
             </div>
 
-            {/* Availability badge */}
             <div
               className="mt-8 animate-fade-up"
               style={{ animationDelay: '440ms' }}
@@ -192,7 +184,6 @@ export function Hero() {
             </div>
           </div>
 
-          {/* ── Colonne droite — Terminal ── */}
           <div
             className="
               hidden lg:block
@@ -205,7 +196,6 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Scroll indicator */}
         <div
           className="
             hidden md:flex
@@ -251,7 +241,6 @@ function Terminal() {
       shadow-md
       font-mono text-sm
     ">
-      {/* Terminal top bar */}
       <div className="
         flex items-center gap-2 px-4 py-3
         bg-[var(--color-surface)]
@@ -263,7 +252,6 @@ function Terminal() {
         <span className="ml-3 text-xs text-[var(--color-muted)]">Noah@portfolio — zsh</span>
       </div>
 
-      {/* Terminal body */}
       <div className="
         bg-[var(--color-bg)] p-5
         space-y-[2px]

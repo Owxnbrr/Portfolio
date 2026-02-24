@@ -20,7 +20,6 @@ export function About() {
 
         <div className="mt-10 grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-12 items-start">
 
-          {/* Bio */}
           <div className="space-y-5">
             <p className="label-mono">// bio.txt</p>
             {PROFILE.bio.split('\n').filter(Boolean).map((para, i) => (
@@ -36,7 +35,6 @@ export function About() {
             </div>
           </div>
 
-          {/* Interests */}
           <div>
             <p className="label-mono mb-4">// centres_interet[]</p>
             <div className="space-y-3">

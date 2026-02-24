@@ -1,15 +1,9 @@
-/* ═══════════════════════════════════════════════════════
-   PORTFOLIO — GLOBAL STYLES
-   Tokens → Thème A (dark) + Thème B (light/blueprint)
-   ═══════════════════════════════════════════════════════ */
-
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* ── 1. CSS CUSTOM PROPERTIES — THÈME DARK (défaut) ─── */
 :root,
 [data-theme="dark"] {
   /* Couleurs */
@@ -22,23 +16,18 @@
   --color-danger:  #EF4444;
   --color-success: #10B981;
 
-  /* Accent RGB (pour les transparences) */
   --color-accent-rgb: 14, 165, 233;
 
-  /* Grid bg pattern (dot grid) */
   --grid-color: rgba(255,255,255,0.035);
   --grid-size: 32px;
 
-  /* Fonts */
   --font-display: 'Syne', system-ui, sans-serif;
   --font-sans:    'Geist', system-ui, sans-serif;
   --font-mono:    'Geist Mono', 'Menlo', monospace;
 
-  /* Scrollbar */
   color-scheme: dark;
 }
 
-/* ── 2. CSS CUSTOM PROPERTIES — THÈME LIGHT (blueprint) */
 [data-theme="light"] {
   --color-bg:      #EFF6FF;
   --color-surface: #FFFFFF;
@@ -51,14 +40,12 @@
 
   --color-accent-rgb: 3, 105, 161;
 
-  /* Blueprint grid — lignes plutôt que dots */
   --grid-color: rgba(147,197,253,0.12);
   --grid-size: 40px;
 
   color-scheme: light;
 }
 
-/* ── 3. BASE ────────────────────────────────────────── */
 *,
 *::before,
 *::after {
@@ -80,13 +67,11 @@ body {
   font-family: var(--font-sans);
   font-size: 1rem;
   line-height: 1.65;
-  /* Transition thème — 300ms sur toutes les propriétés de couleur */
   transition:
     background-color 300ms ease,
     color 300ms ease;
 }
 
-/* Background grid pattern */
 body::before {
   content: '';
   position: fixed;
@@ -98,7 +83,6 @@ body::before {
   z-index: 0;
 }
 
-/* ── 4. SCROLLBAR CUSTOM ────────────────────────────── */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: var(--color-bg); }
 ::-webkit-scrollbar-thumb {
@@ -107,20 +91,17 @@ body::before {
 }
 ::-webkit-scrollbar-thumb:hover { background: var(--color-muted); }
 
-/* ── 5. SÉLECTION ────────────────────────────────────── */
 ::selection {
   background: rgba(var(--color-accent-rgb), 0.25);
   color: var(--color-text);
 }
 
-/* ── 6. FOCUS ACCESSIBLE ────────────────────────────── */
 :focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 3px;
   border-radius: 2px;
 }
 
-/* ── 7. TYPOGRAPHIE ─────────────────────────────────── */
 h1, h2, h3, h4 {
   font-family: var(--font-display);
   color: var(--color-text);
@@ -134,8 +115,6 @@ code, pre, .font-mono {
   font-family: var(--font-mono);
 }
 
-/* ── 8. TRANSITIONS COULEUR SUR COMPOSANTS ──────────── */
-/* Appliqué globalement pour le toggle de thème */
 a,
 button,
 [class*="bg-"],
@@ -146,10 +125,8 @@ button,
   transition-timing-function: ease;
 }
 
-/* ── 9. UTILITIES CUSTOM ─────────────────────────────── */
 @layer utilities {
 
-  /* Container centré */
   .container-main {
     width: 100%;
     max-width: 1280px;
@@ -157,7 +134,6 @@ button,
     padding-inline: clamp(16px, 5vw, 80px);
   }
 
-  /* Texte accent monospace */
   .label-mono {
     font-family: var(--font-mono);
     font-size: 0.6875rem;
@@ -166,7 +142,6 @@ button,
     color: var(--color-muted);
   }
 
-  /* Tag / badge techno */
   .tag {
     display: inline-flex;
     align-items: center;
@@ -187,7 +162,6 @@ button,
     border-color: rgba(var(--color-accent-rgb), 0.35);
   }
 
-  /* Card base */
   .card {
     position: relative;
     background: var(--color-surface);
@@ -204,7 +178,6 @@ button,
     transform: translateY(-4px);
   }
 
-  /* Scroll progress bar */
   .scroll-progress {
     position: fixed;
     top: 0;
@@ -216,7 +189,6 @@ button,
     transition: transform 100ms linear;
   }
 
-  /* Gradient radial hero */
   .hero-glow {
     position: absolute;
     bottom: -20%;
@@ -228,7 +200,6 @@ button,
     pointer-events: none;
   }
 
-  /* Révélation au scroll — état initial */
   .reveal {
     opacity: 0;
     transform: translateY(24px);
@@ -244,7 +215,6 @@ button,
     animation: slide-in-left 400ms cubic-bezier(0.4,0,0.2,1) forwards;
   }
 
-  /* Stagger delays */
   .delay-1 { animation-delay: 80ms; }
   .delay-2 { animation-delay: 160ms; }
   .delay-3 { animation-delay: 240ms; }
@@ -252,7 +222,6 @@ button,
   .delay-5 { animation-delay: 400ms; }
   .delay-6 { animation-delay: 480ms; }
 
-  /* Hash ID projet */
   .project-hash {
     font-family: var(--font-mono);
     font-size: 0.625rem;
@@ -261,13 +230,11 @@ button,
     letter-spacing: 0.04em;
   }
 
-  /* Blueprint border — thème light uniquement */
   [data-theme="light"] .blueprint-line {
     border-color: #93C5FD;
   }
 }
 
-/* état initial : caché */
 .reveal .reveal-left {
   opacity: 0;
   transform: translateX(-12px);
@@ -275,7 +242,6 @@ button,
   will-change: opacity, transform;
 }
 
-/* quand ScrollReveal active la section */
 .reveal.is-visible .reveal-left {
   opacity: 1;
   transform: translateX(0);

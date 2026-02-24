@@ -26,12 +26,10 @@ export function Skills() {
         <div className="mt-10 space-y-10">
           {SKILLS.map(group => (
             <div key={group.id}>
-              {/* Group label */}
               <p className="label-mono mb-4 text-[var(--color-accent)]/70">
                 {group.label}
               </p>
 
-              {/* Skills grid */}
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
                 {group.skills.map((skill, i) => (
                   <SkillModule
@@ -47,7 +45,6 @@ export function Skills() {
           ))}
         </div>
 
-        {/* Learning now */}
         <div className="
           mt-12 p-5 rounded-md
           border border-[var(--color-border)]
@@ -97,7 +94,6 @@ function SkillModule({ skill, index, isHovered, onHover }: SkillModuleProps) {
       onMouseEnter={() => onHover(skill.name)}
       onMouseLeave={() => onHover(null)}
     >
-      {/* Icon / initials */}
       <div className={`
         font-mono font-semibold text-base mb-2 transition-colors duration-150
         ${isHovered ? 'text-[var(--color-accent)]' : 'text-[var(--color-text)]'}
@@ -105,17 +101,14 @@ function SkillModule({ skill, index, isHovered, onHover }: SkillModuleProps) {
         {skill.icon}
       </div>
 
-      {/* Name */}
       <p className="font-sans text-sm font-medium text-[var(--color-text)] leading-tight mb-1">
         {skill.name}
       </p>
 
-      {/* Level */}
       <p className={`font-mono text-[10px] ${LEVEL_COLORS[skill.level]}`}>
         {skill.level}
       </p>
 
-      {/* Projects indicator */}
       {skill.projects && skill.projects.length > 0 && (
         <div className="absolute top-2 right-2">
           <span

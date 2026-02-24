@@ -297,7 +297,6 @@ export function ProjectPageClient({ project, prevProject, nextProject }: Props) 
   )
 }
 
-{/* ── Sous-composants ────────────────────────────────────*/}
 
 function CaseSection({
   id, label, title, children
@@ -351,7 +350,6 @@ function ScreenshotBlock({
           aspect-video
         "
       >
-        {/* Placeholder gradient pendant chargement / erreur */}
         {(!loaded || error) && (
           <div
             className="absolute inset-0 flex items-center justify-center"
@@ -367,7 +365,6 @@ function ScreenshotBlock({
           </div>
         )}
 
-        {/* Image */}
         {!error && (
           <div className="absolute inset-0 p-3 md:p-4">
             {isMobile ? (
@@ -400,7 +397,6 @@ function ScreenshotBlock({
           </div>
         )}
 
-        {/* Index overlay */}
         <div className="absolute top-3 left-3 pointer-events-none z-10">
           <span className="project-hash bg-black/40 px-2 py-1 rounded-sm backdrop-blur-sm">
             screen_{String(index + 1).padStart(2, '0')}
@@ -417,7 +413,6 @@ function ScreenshotBlock({
   )
 }
 
-{/* ── Icons inline ───────────────────────────────────────*/}
 function GitHubIcon() {
   return (
     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">

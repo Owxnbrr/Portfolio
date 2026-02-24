@@ -46,15 +46,12 @@ export const metadata: Metadata = {
     title: 'Noah Bucheton — Développeur Web',
     description:
       'Portfolio de Noah Bucheton, développeur web junior spécialisé frontend (React, Next.js).',
-    // Ajoute une vraie image OG plus tard (1200x630)
-    // images: ['/og-image.jpg'],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Noah Bucheton — Développeur Web',
     description:
       'Portfolio de Noah Bucheton, développeur web junior spécialisé frontend (React, Next.js).',
-    // images: ['/og-image.jpg'],
   },
    icons: {
     icon: '/favicon.ico',

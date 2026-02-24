@@ -13,19 +13,16 @@ export function Footer() {
         container-main
         flex flex-col sm:flex-row items-center justify-between gap-4
       ">
-        {/* Left — copyright + build hash */}
         <p className="font-mono text-xs text-[var(--color-muted)]">
           © {year} {PROFILE.name}{' '}
           <span className="text-[var(--color-border)] mx-2" aria-hidden="true">—</span>
           <span className="project-hash">build #{PROFILE.buildHash}</span>
         </p>
 
-        {/* Center */}
         <p className="font-mono text-xs text-[var(--color-muted)] hidden sm:block">
           Made with Next.js + Vercel
         </p>
 
-        {/* Right — social icons */}
         <div className="flex items-center gap-4">
           <a
             href={PROFILE.github}

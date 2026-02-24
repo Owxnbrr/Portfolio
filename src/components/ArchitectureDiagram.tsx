@@ -51,7 +51,6 @@ export function ArchitectureDiagram({ diagram }: Props) {
       role="img"
       aria-label="Diagramme d'architecture du projet"
     >
-      {/* Header */}
       <div className="px-5 py-3 border-b border-[var(--color-border)] flex items-center gap-3">
         <span className="label-mono">// architecture_diagram</span>
         <div className="ml-auto flex items-center gap-4">
@@ -73,7 +72,6 @@ export function ArchitectureDiagram({ diagram }: Props) {
         </div>
       </div>
 
-      {/* SVG Diagram */}
       <div className="p-4 overflow-x-auto">
         <svg
           viewBox={`0 0 ${CANVAS_W} ${CANVAS_H}`}
@@ -83,7 +81,6 @@ export function ArchitectureDiagram({ diagram }: Props) {
           aria-hidden="true"
         >
           <defs>
-            {/* Arrow marker per color */}
             {(Object.keys(NODE_STYLES) as ArchitectureNode['type'][]).map(type => (
               <marker
                 key={type}
@@ -105,7 +102,6 @@ export function ArchitectureDiagram({ diagram }: Props) {
             </marker>
           </defs>
 
-          {/* Edges */}
           {edges.map((edge, i) => {
             const from = positions[edge.from]
             const to = positions[edge.to]
@@ -172,14 +168,12 @@ export function ArchitectureDiagram({ diagram }: Props) {
             )
           })}
 
-          {/* Nodes */}
           {nodes.map(node => {
             const pos = positions[node.id]
             const style = NODE_STYLES[node.type]
 
             return (
               <g key={node.id} transform={`translate(${pos.x}, ${pos.y})`}>
-                {/* Node background */}
                 <rect
                   x={0} y={0}
                   width={W} height={H}
@@ -188,14 +182,12 @@ export function ArchitectureDiagram({ diagram }: Props) {
                   stroke={style.border + '50'}
                   strokeWidth={1}
                 />
-                {/* Top accent line */}
                 <rect
                   x={0} y={0}
                   width={W} height={2}
                   rx={2}
                   fill={style.bg + '90'}
                 />
-                {/* Type badge */}
                 <text
                   x={8} y={18}
                   style={{
@@ -208,7 +200,6 @@ export function ArchitectureDiagram({ diagram }: Props) {
                 >
                   {style.badge}
                 </text>
-                {/* Label */}
                 <text
                   x={W / 2} y={H / 2 + 5}
                   textAnchor="middle"

@@ -43,7 +43,6 @@ export function Projects() {
           subtitle={`${PROJECTS.length} projets — code lisible, architecture réfléchie.`}
         />
 
-        {/* Filter tabs */}
         <div className="flex flex-wrap gap-2 mt-8 mb-10" role="tablist" aria-label="Filtrer les projets">
           {FILTERS.map(f => (
             <button
@@ -69,7 +68,6 @@ export function Projects() {
           </span>
         </div>
 
-        {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
           {filtered.map((project, i) => (
             <ProjectCard key={project.id} project={project} index={i} />
@@ -86,15 +84,13 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       className="card flex flex-col overflow-hidden group"
       style={{ animationDelay: `${index * 80}ms` }}
     >
-      {/* Thumbnail */}
       <div
         className="relative h-44 overflow-hidden"
         style={{ background: project.gradient }}
       >
-        {/* Overlay gradient */}
+
         <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-bg)]/60 to-transparent" />
 
-        {/* Status badge */}
         <div className="absolute top-3 right-3">
           <span className={`
             font-mono text-[10px] tracking-widest uppercase
@@ -105,27 +101,22 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           </span>
         </div>
 
-        {/* Year */}
         <div className="absolute bottom-3 left-4">
           <span className="label-mono">{project.year}</span>
         </div>
       </div>
 
-      {/* Content */}
       <div className="flex flex-col flex-1 p-6">
-        {/* Tags */}
         <div className="flex flex-wrap gap-2 mb-3">
           {project.tags.map(tag => (
             <span key={tag} className="tag">{tag}</span>
           ))}
         </div>
 
-        {/* Title */}
         <h3 className="font-display font-semibold text-xl text-[var(--color-text)] mb-2 group-hover:text-[var(--color-accent)] transition-colors duration-150">
           {project.title}
         </h3>
 
-        {/* Description */}
         <p className="text-sm text-[var(--color-muted)] leading-relaxed flex-1" style={{
           display: '-webkit-box',
           WebkitLineClamp: 2,
@@ -135,9 +126,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           {project.description}
         </p>
 
-        {/* Footer */}
         <div className="flex items-center justify-between mt-5 pt-4 border-t border-[var(--color-border)]">
-          {/* Links */}
           <div className="flex gap-3">
             {project.links.github && (
               <a
@@ -169,7 +158,6 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             )}
           </div>
 
-          {/* CTA + Hash */}
           <div className="flex items-center gap-4">
             <span className="project-hash">#{project.hash}</span>
             <a

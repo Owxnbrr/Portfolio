@@ -40,7 +40,6 @@ function TimelineColumn({ title, items }: TimelineColumnProps) {
       <p className="label-mono mb-6 text-[var(--color-accent)]/70">{title}</p>
 
       <div className="relative">
-        {/* Vertical line */}
         <div className="
           absolute left-[7px] top-3 bottom-3
           w-px bg-[var(--color-border)]
@@ -62,7 +61,6 @@ function TimelineItem({ exp, index }: { exp: typeof EXPERIENCES[0]; index: numbe
       className="relative pl-8 reveal-left"
       style={{ animationDelay: `${index * 100}ms` }}
     >
-      {/* Node */}
       <div className="
         absolute left-0 top-1
         w-[15px] h-[15px] rounded-full
@@ -73,27 +71,22 @@ function TimelineItem({ exp, index }: { exp: typeof EXPERIENCES[0]; index: numbe
         <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-accent)] block" />
       </div>
 
-      {/* Date range */}
       <p className="label-mono mb-2 text-[var(--color-muted)]">
         {exp.dateRange}
       </p>
 
-      {/* Title */}
       <h3 className="font-display font-semibold text-lg text-[var(--color-text)] leading-tight">
         {exp.title}
       </h3>
 
-      {/* Company */}
       <p className="font-sans text-sm text-[var(--color-accent)] font-medium mt-0.5 mb-2">
         {exp.company} · {exp.location}
       </p>
 
-      {/* Description */}
       <p className="text-sm text-[var(--color-muted)] leading-relaxed mb-3">
         {exp.description}
       </p>
 
-      {/* Tags */}
       <div className="flex flex-wrap gap-2">
         {exp.tags.map(tag => (
           <span key={tag} className="tag">{tag}</span>

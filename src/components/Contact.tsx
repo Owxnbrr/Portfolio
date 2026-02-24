@@ -21,7 +21,6 @@ export function Contact() {
     <section id="contact" className="py-24 border-t border-[var(--color-border)]">
       <div className="container-main">
 
-        {/* Centered content */}
         <div className="max-w-[640px] mx-auto text-center">
           <p className="label-mono mb-4 justify-center flex">// section_06 — contact</p>
 
@@ -34,7 +33,6 @@ export function Contact() {
             Réponse sous 24h, toujours.
           </p>
 
-          {/* Email CTA */}
           <button
             onClick={copyEmail}
             className={`
@@ -67,7 +65,6 @@ export function Contact() {
             )}
           </button>
 
-          {/* Social links */}
           <div className="flex items-center justify-center gap-6">
             <SocialLink href={PROFILE.github} label="GitHub">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">

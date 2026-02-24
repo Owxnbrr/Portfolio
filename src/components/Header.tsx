@@ -63,7 +63,6 @@ export function Header() {
       >
         <div className="container-main h-full flex items-center justify-between">
 
-          {/* Logo */}
           <a
           href="#"
           className="flex items-center gap-2 hover:opacity-80 transition-opacity duration-150"
@@ -82,12 +81,10 @@ export function Header() {
               className="h-8 w-auto"
             />
           ) : (
-            // Fallback SSR pour éviter un "trou" avant le mount
             <div className="h-8 w-8 rounded bg-[var(--color-surface)] border border-[var(--color-border)]" />
           )}
           </a>
 
-          {/* Nav desktop */}
           <nav className="hidden md:flex items-center gap-8" aria-label="Navigation principale">
             {NAV_LINKS.map(link => (
               <a
@@ -110,9 +107,7 @@ export function Header() {
             ))}
           </nav>
 
-          {/* Actions droite */}
           <div className="flex items-center gap-3">
-            {/* Theme toggle */}
             {mounted && (
               <button
                 onClick={toggle}
@@ -140,7 +135,6 @@ export function Header() {
               </button>
             )}
 
-            {/* Hamburger mobile */}
             <button
               className="
                 md:hidden w-9 h-9 rounded-md flex items-center justify-center
@@ -163,7 +157,6 @@ export function Header() {
         </div>
       </header>
 
-      {/* Mobile drawer */}
       <div
         className={`
           fixed inset-0 z-40 md:hidden
