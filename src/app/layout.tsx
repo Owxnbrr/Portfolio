@@ -59,13 +59,8 @@ export const metadata: Metadata = {
       "Portfolio de Noah Bucheton : projets web, UI/UX, branding et réalisations créatives.",
     images: ["/og-image.jpg"],
   },
-  icons: {
-    icon: [
-      { url: "/favicon.ico" },
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-    ],
-    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+    icons: {
+    icon: [{ url: "/favicon.ico" }],
     shortcut: ["/favicon.ico"],
   },
 };
