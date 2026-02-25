@@ -1,76 +1,83 @@
-import type { Metadata } from 'next'
-import './globals.css'
-import { ThemeScript } from '@/components/ThemeScript'
+// src/app/layout.tsx
+import type { Metadata } from "next";
+import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://noahbucheton.fr'),
+  metadataBase: new URL("https://noahbucheton.fr"),
   title: {
-    default: 'Noah Bucheton — Développeur Web',
-    template: '%s | Noah Bucheton',
+    default: "Noah Bucheton | Développeur Web & Designer",
+    template: "%s | Noah Bucheton",
   },
   description:
-    'Portfolio de Noah Bucheton, développeur web junior spécialisé frontend (React, Next.js). Disponible en alternance : sites vitrines, e-commerce et interfaces modernes.',
+    "Portfolio de Noah Bucheton, développeur web & designer : projets web, UI/UX, branding et réalisations créatives.",
   keywords: [
-    'Noah Bucheton',
-    'développeur web',
-    'développeur frontend',
-    'React',
-    'Next.js',
-    'Node.js',
-    'portfolio développeur',
-    'alternance développeur web',
-    'Amiens',
+    "Noah Bucheton",
+    "portfolio",
+    "développeur web",
+    "web designer",
+    "UI UX",
+    "Next.js",
+    "freelance",
   ],
-  authors: [{ name: 'Noah Bucheton', url: 'https://noahbucheton.fr' }],
-  creator: 'Noah Bucheton',
-  publisher: 'Noah Bucheton',
-  alternates: {
-    canonical: '/',
-  },
+  authors: [{ name: "Noah Bucheton" }],
+  creator: "Noah Bucheton",
   robots: {
     index: true,
     follow: true,
     googleBot: {
       index: true,
       follow: true,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-      'max-video-preview': -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
     },
   },
+  alternates: {
+    canonical: "https://noahbucheton.fr",
+  },
   openGraph: {
-    type: 'website',
-    locale: 'fr_FR',
-    url: 'https://noahbucheton.fr',
-    siteName: 'Portfolio Noah Bucheton',
-    title: 'Noah Bucheton — Développeur Web',
+    type: "website",
+    url: "https://noahbucheton.fr",
+    title: "Noah Bucheton | Développeur Web & Designer",
     description:
-      'Portfolio de Noah Bucheton, développeur web junior spécialisé frontend (React, Next.js).',
+      "Portfolio de Noah Bucheton : projets web, UI/UX, branding et réalisations créatives.",
+    siteName: "Noah Bucheton",
+    locale: "fr_FR",
+    images: [
+      {
+        url: "/og-image.jpg", // mets une vraie image dans /public
+        width: 1200,
+        height: 630,
+        alt: "Portfolio Noah Bucheton",
+      },
+    ],
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'Noah Bucheton — Développeur Web',
+    card: "summary_large_image",
+    title: "Noah Bucheton | Développeur Web & Designer",
     description:
-      'Portfolio de Noah Bucheton, développeur web junior spécialisé frontend (React, Next.js).',
+      "Portfolio de Noah Bucheton : projets web, UI/UX, branding et réalisations créatives.",
+    images: ["/og-image.jpg"],
   },
-   icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon.ico',
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+    shortcut: ["/favicon.ico"],
   },
-  category: 'technology',
-}
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
-    <html lang="fr" suppressHydrationWarning>
-      <head>
-        <ThemeScript />
-      </head>
+    <html lang="fr">
       <body>{children}</body>
     </html>
-  )
+  );
 }
