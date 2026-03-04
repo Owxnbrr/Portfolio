@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     locale: "fr_FR",
     images: [
       {
-        url: "/og-image.jpg", // mets une vraie image dans /public
+        url: "/og-image.jpg", 
         width: 1200,
         height: 630,
         alt: "Portfolio Noah Bucheton",
