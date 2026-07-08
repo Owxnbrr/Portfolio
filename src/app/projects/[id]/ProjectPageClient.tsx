@@ -25,16 +25,19 @@ const NODE_COLORS = {
 }
 
 {/* ── Status labels ──────────────────────────────────────*/}
-const STATUS_LABELS = { 'terminé': 'TERMINÉ', 'en cours': 'EN COURS', 'oss': 'OSS', 'prototype': 'PROTOTYPE' }
+const STATUS_LABELS = { 'terminé': 'TERMINÉ', 'en cours': 'EN COURS', 'mvp fonctionnel': 'MVP FONCTIONNEL', 'oss': 'OSS', 'prototype': 'PROTOTYPE' }
 const STATUS_COLORS = {
   'terminé':  'text-[var(--color-success)] border-[var(--color-success)]/30 bg-[var(--color-success)]/8',
   'en cours': 'text-[var(--color-accent)] border-[var(--color-accent)]/30 bg-[var(--color-accent)]/8',
+  'mvp fonctionnel': 'text-cyan-300 border-cyan-300/30 bg-cyan-300/8',
   'oss':      'text-amber-400 border-amber-400/30 bg-amber-400/8',
   'prototype': 'text-purple-400 border-purple-400/30 bg-purple-400/8',
 }
 
 export function ProjectPageClient({ project, prevProject, nextProject }: Props) {
   const cs = project.caseStudy
+  const [coverError, setCoverError] = useState(false)
+  const hasCoverImage = Boolean(project.coverImage && !coverError)
   let caseSectionIndex = 1
   const nextCaseLabel = () => String(caseSectionIndex++).padStart(2, '0')
 
@@ -50,13 +53,14 @@ export function ProjectPageClient({ project, prevProject, nextProject }: Props) 
           className="relative py-20 border-b border-[var(--color-border)] overflow-hidden"
           aria-label={`Projet ${project.title}`}
         >
-          {project.coverImage ? (
+          {hasCoverImage ? (
             <Image
-              src={project.coverImage}
+              src={project.coverImage as string}
               alt=""
               fill
               priority
               className="object-cover opacity-35"
+              onError={() => setCoverError(true)}
               sizes="100vw"
               aria-hidden="true"
             />
@@ -239,6 +243,12 @@ export function ProjectPageClient({ project, prevProject, nextProject }: Props) 
                 <p className="text-base text-[var(--color-muted)] leading-relaxed">
                   {cs.outcome}
                 </p>
+              </CaseSection>
+            )}
+
+            {cs.pages && cs.pages.length > 0 && (
+              <CaseSection id="pages" label={nextCaseLabel()} title="Pages principales">
+                <CaseBulletList items={cs.pages} />
               </CaseSection>
             )}
 

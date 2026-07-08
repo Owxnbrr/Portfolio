@@ -16,6 +16,7 @@ const FILTERS: { value: Filter; label: string }[] = [
 const STATUS_LABELS: Record<Project['status'], string> = {
   'terminé': 'TERMINÉ',
   'en cours': 'EN COURS',
+  'mvp fonctionnel': 'MVP FONCTIONNEL',
   'oss': 'OSS',
   'prototype': 'PROTOTYPE'
 }
@@ -23,6 +24,7 @@ const STATUS_LABELS: Record<Project['status'], string> = {
 const STATUS_COLORS: Record<Project['status'], string> = {
   'terminé':  'text-[var(--color-success)] border-[var(--color-success)]/30 bg-[var(--color-success)]/8',
   'en cours': 'text-[var(--color-accent)] border-[var(--color-accent)]/30 bg-[var(--color-accent)]/8',
+  'mvp fonctionnel': 'text-cyan-300 border-cyan-300/30 bg-cyan-300/8',
   'oss':      'text-yellow-400 border-yellow-400/30 bg-yellow-400/8',
   'prototype': 'text-blue-400 border-blue-400/30 bg-blue-400/8',
 }
@@ -80,6 +82,9 @@ export function Projects() {
 }
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
+  const [imageError, setImageError] = useState(false)
+  const hasCoverImage = Boolean(project.coverImage && !imageError)
+
   return (
     <article
       className="card flex flex-col overflow-hidden group"
@@ -87,14 +92,15 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
     >
       <div
         className="relative h-48 overflow-hidden bg-[var(--color-surface)]"
-        style={!project.coverImage ? { background: project.gradient } : undefined}
+        style={!hasCoverImage ? { background: project.gradient } : undefined}
       >
-        {project.coverImage ? (
+        {hasCoverImage ? (
           <Image
-            src={project.coverImage}
+            src={project.coverImage as string}
             alt={`Couverture du projet ${project.title}`}
             fill
             className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.06]"
+            onError={() => setImageError(true)}
             sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 560px"
           />
         ) : (

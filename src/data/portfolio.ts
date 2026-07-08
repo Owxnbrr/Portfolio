@@ -58,6 +58,7 @@ export type CaseStudy = {
   outcome?: string
   limitations?: string[]
   metrics?: string[]
+  pages?: string[]
 
   architecture?: {
     description: string
@@ -78,7 +79,7 @@ export type Project = {
   tags: string[]
   stack: string[]
   type: 'frontend' | 'fullstack' | 'side' | 'design'
-  status: 'terminé' | 'en cours' | 'oss' | 'prototype'
+  status: 'terminé' | 'en cours' | 'mvp fonctionnel' | 'oss' | 'prototype'
   year: number
   links: {
     demo?: string
@@ -129,6 +130,116 @@ export const SERVICES: Service[] = [
 ]
 
 export const PROJECTS: Project[] = [
+  {
+  id: 'bonpass',
+  hash: 'bonp26',
+  title: 'BonPass',
+  description: 'SaaS de cartes de fidélité digitales pour commerces de proximité, avec inscription client par QR code et gestion des points côté commerçant.',
+  longDescription: `BonPass est un SaaS permettant aux commerces de proximité de créer un programme de fidélité digital.
+Le commerçant configure son commerce et son programme, affiche un QR code public, puis le client crée sa carte digitale. En caisse, le commerçant scanne le QR code client pour ajouter ou retirer des points ou tampons.`,
+  tags: ['SaaS', 'QR Code', 'Fidélité digitale', 'Supabase', 'Dashboard', 'Auth', 'RLS', 'Vercel'],
+  stack: [
+  'Next.js App Router',
+  'TypeScript',
+  'Tailwind CSS',
+  'Supabase Auth',
+  'Supabase Database',
+  'Supabase RLS',
+  'Vercel',
+  'OVH DNS',
+  ],
+  type: 'fullstack',
+  status: 'mvp fonctionnel',
+  year: 2026,
+  links: {
+    demo: 'https://bonpass.fr',
+  },
+  gradient: 'linear-gradient(135deg, #06131F 0%, #0EA5E9 45%, #0F172A 100%)',
+  coverImage: '/projects/bonpass.png',
+  caseStudy: {
+    context: {
+      situation:
+        "BonPass est un SaaS permettant aux commerces de proximité de créer un programme de fidélité digital. Le commerçant configure son commerce et son programme, affiche un QR code public, puis le client crée sa carte digitale. En caisse, le commerçant scanne le QR code client pour ajouter ou retirer des points ou tampons.",
+      problem:
+        "Les petites entreprises utilisent encore souvent des cartes papier faciles à perdre, difficiles à suivre et peu pratiques à gérer. BonPass vise à simplifier la fidélisation client avec une carte digitale accessible depuis le téléphone, sans application mobile à installer.",
+      goals: [
+        'Créer un parcours simple pour les commerçants de proximité',
+        'Permettre aux clients de rejoindre un programme via QR code',
+        'Remplacer la carte papier par une carte digitale accessible sur mobile',
+        'Donner au commerçant un dashboard pour suivre clients, scans et statistiques',
+      ],
+    },
+    solution:
+      "BonPass centralise la création du commerce, la configuration du programme de fidélité, l’inscription client, la génération de cartes digitales et le scan QR en caisse. Le commerçant dispose d’un dashboard pour suivre son activité, ses clients et ses statistiques.",
+    architecture: {
+      description:
+        "Application Next.js App Router connectée à Supabase pour l’authentification, les données et les règles RLS. Le parcours sépare le dashboard commerçant, l’inscription publique via QR code et la carte client consultable par token.",
+      diagram: {
+        nodes: [
+          { id: 'landing', label: 'Landing', type: 'client' },
+          { id: 'dashboard', label: 'Dashboard commerçant', type: 'client' },
+          { id: 'join', label: 'Page publique QR', type: 'client' },
+          { id: 'card', label: 'Carte client', type: 'client' },
+          { id: 'supabase', label: 'Supabase', type: 'service' },
+          { id: 'deploy', label: 'Vercel', type: 'infra' },
+        ],
+        edges: [
+          { from: 'landing', to: 'dashboard', label: 'connexion' },
+          { from: 'dashboard', to: 'supabase', label: 'auth / data' },
+          { from: 'join', to: 'supabase', label: 'inscription' },
+          { from: 'card', to: 'supabase', label: 'token' },
+          { from: 'deploy', to: 'landing', label: 'déploiement' },
+        ],
+      },
+    },
+    features: [
+      {
+        title: 'Création de compte commerçant',
+        description: 'Connexion et inscription par email et mot de passe avec Supabase Auth.',
+      },
+      {
+        title: 'Gestion du commerce',
+        description: 'Le commerçant peut créer son commerce, définir son identité et configurer son programme de fidélité.',
+      },
+      {
+        title: 'Carte client digitale',
+        description: 'Le client rejoint le programme via une page publique et obtient une carte digitale accessible avec un token unique.',
+      },
+      {
+        title: 'QR code client',
+        description: 'Chaque carte dispose d’un QR code scannable par le commerçant depuis le dashboard.',
+      },
+      {
+        title: 'Ajout et retrait de points',
+        description: 'Le commerçant peut scanner une carte client pour ajouter ou retirer des points ou tampons.',
+      },
+      {
+        title: 'Dashboard et statistiques',
+        description: 'Le dashboard affiche les informations principales, les clients, les scans et les statistiques du programme.',
+      },
+    ],
+    pages: [
+      '/',
+      '/login',
+      '/dashboard',
+      '/dashboard/business',
+      '/dashboard/program',
+      '/dashboard/scan',
+      '/dashboard/clients',
+      '/dashboard/employees',
+      '/dashboard/stats',
+      '/join/[businessSlug]',
+      '/card/[token]',
+    ],
+    outcome:
+      'Le MVP permet déjà de créer un compte, configurer un commerce, créer un programme de fidélité, générer une carte client, scanner un QR code et modifier le solde de points. Le projet est déployé sur Vercel avec le domaine bonpass.fr.',
+    limitations: [
+      'Le produit est encore en phase MVP.',
+      'La persistance de session Supabase SSR doit être stabilisée pour garantir une expérience fluide après refresh et navigation.',
+      'La sécurité Supabase, les policies RLS, les rôles employés et la rotation des clés doivent être finalisés avant une vraie mise en production commerciale.',
+    ],
+  },
+},
   {
   id: 'bat-manager',
   hash: 'batm26',
@@ -563,10 +674,10 @@ export const SKILLS: SkillGroup[] = [
     id: 'frontend',
     label: 'FRONTEND_',
     skills: [
-      { name: 'React', icon: 'Re', level: '// daily', projects: ['bat-manager', 'ipp-election', 'ippcom-goodies'] },
-      { name: 'Next.js', icon: 'Nx', level: '// daily', projects: ['bat-manager', 'ipp-election', 'ippcom-goodies'] },
-      { name: 'TypeScript', icon: 'TS', level: '// daily', projects: ['bat-manager', 'ipp-election', 'ippcom-goodies'] },
-      { name: 'Tailwind CSS', icon: 'TW', level: '// daily', projects: ['bat-manager', 'ipp-election', 'ippcom-goodies'] },
+      { name: 'React', icon: 'Re', level: '// daily', projects: ['bonpass', 'bat-manager', 'ipp-election', 'ippcom-goodies'] },
+      { name: 'Next.js', icon: 'Nx', level: '// daily', projects: ['bonpass', 'bat-manager', 'ipp-election', 'ippcom-goodies'] },
+      { name: 'TypeScript', icon: 'TS', level: '// daily', projects: ['bonpass', 'bat-manager', 'ipp-election', 'ippcom-goodies'] },
+      { name: 'Tailwind CSS', icon: 'TW', level: '// daily', projects: ['bonpass', 'bat-manager', 'ipp-election', 'ippcom-goodies'] },
       { name: 'CSS / SCSS', icon: 'Cs', level: '// daily' },
       { name: 'HTML Semantic', icon: 'Ht', level: '// daily' },
       { name: 'Responsive Design', icon: 'Rs', level: '// daily' },
@@ -579,8 +690,8 @@ export const SKILLS: SkillGroup[] = [
     skills: [
       { name: 'Node.js', icon: 'Nd', level: '// daily', projects: ['bat-manager', 'ipp-election', 'ippcom-goodies'] },
       { name: 'Appwrite', icon: 'Aw', level: '// familiar', projects: ['bat-manager'] },
-      { name: 'Supabase', icon: 'Sb', level: '// daily', projects: ['ipp-election', 'ippcom-goodies'] },
-      { name: 'PostgreSQL', icon: 'Pg', level: '// daily', projects: ['ipp-election', 'ippcom-goodies'] },
+      { name: 'Supabase', icon: 'Sb', level: '// daily', projects: ['bonpass', 'ipp-election', 'ippcom-goodies'] },
+      { name: 'PostgreSQL', icon: 'Pg', level: '// daily', projects: ['bonpass', 'ipp-election', 'ippcom-goodies'] },
       { name: 'WordPress', icon: 'Wp', level: '// familiar' },
       { name: 'WooCommerce', icon: 'Wc', level: '// familiar' },
       { name: 'Auth JWT', icon: 'Au', level: '// familiar', projects: ['ippcom-goodies'] },
@@ -591,6 +702,7 @@ export const SKILLS: SkillGroup[] = [
     label: 'DEVOPS_',
     skills: [
       { name: 'Git / GitHub', icon: 'Gt', level: '// daily' },
+      { name: 'Vercel', icon: 'Vc', level: '// familiar', projects: ['bonpass', 'bat-manager'] },
       { name: 'Netlify', icon: 'Nf', level: '// daily' },
       { name: 'Docker', icon: 'Dk', level: '// familiar' },
       { name: 'CI/CD', icon: 'CI', level: '// learning' },
