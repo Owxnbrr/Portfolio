@@ -2,10 +2,10 @@
 
 import { useState } from 'react'
 import { PROFILE } from '@/data/portfolio'
-import { SectionHeader } from './SectionHeader'
 
 export function Contact() {
   const [copied, setCopied] = useState(false)
+  const mailtoHref = `mailto:${PROFILE.email}?subject=${encodeURIComponent('Demande de devis pour un projet web')}`
 
   const copyEmail = async () => {
     try {
@@ -22,48 +22,75 @@ export function Contact() {
       <div className="container-main">
 
         <div className="max-w-[640px] mx-auto text-center">
-          <p className="label-mono mb-4 justify-center flex">// section_06 — contact</p>
+          <p className="label-mono mb-4 justify-center flex">{'// section_06 — contact'}</p>
 
-          <h2 className="font-display font-bold text-3xl md:text-[2.25rem] text-[var(--color-text)] tracking-tight mb-4">
-            Travaillons ensemble.
+          <h2 className="font-display font-bold text-3xl md:text-[2.25rem] text-[var(--color-text)] mb-4">
+            Un projet de site web ?
           </h2>
 
           <p className="text-base text-[var(--color-muted)] mb-10 max-w-[480px] mx-auto">
-            Disponible.<br />
-            Réponse sous 24h, toujours.
+            Expliquez-moi votre besoin : création de site, refonte, maintenance, boutique en ligne ou demande de devis.
+            Je vous répondrai rapidement pour échanger sur la meilleure solution.
           </p>
 
-          <button
-            onClick={copyEmail}
-            className={`
-              inline-flex items-center gap-3
-              px-8 py-4 rounded-md mb-8
-              font-sans font-semibold text-base
-              transition-all duration-150 group
-              ${copied
-                ? 'bg-[var(--color-success)] text-white'
-                : 'bg-[var(--color-accent)] text-white hover:opacity-90 hover:shadow-glow active:scale-[0.97]'
-              }
-            `}
-            aria-label={copied ? 'Email copié !' : `Copier l'email ${PROFILE.email}`}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-8">
+            <a
+              href={mailtoHref}
+              className="
+                inline-flex items-center gap-3
+                px-8 py-4 rounded-md
+                bg-[var(--color-accent)] text-white
+                font-sans font-semibold text-base
+                hover:opacity-90 hover:shadow-glow active:scale-[0.97]
+                transition-all duration-150
+              "
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+              Demander un devis
+            </a>
+
+            <button
+              onClick={copyEmail}
+              className={`
+                inline-flex items-center gap-3
+                px-6 py-4 rounded-md
+                font-sans font-semibold text-base
+                border transition-all duration-150 group
+                ${copied
+                  ? 'bg-[var(--color-success)] border-[var(--color-success)] text-white'
+                  : 'text-[var(--color-text)] border-[var(--color-border)] hover:border-[var(--color-accent)]/40 hover:bg-[var(--color-surface)] active:scale-[0.97]'
+                }
+              `}
+              aria-label={copied ? 'Email copié !' : `Copier l'email ${PROFILE.email}`}
+            >
+              {copied ? (
+                <>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                  Email copié
+                </>
+              ) : (
+                <>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                    <polyline points="22,6 12,13 2,6"/>
+                  </svg>
+                  Copier l’email
+                </>
+              )}
+            </button>
+          </div>
+
+          <a
+            href={`mailto:${PROFILE.email}`}
+            className="inline-block label-mono mb-8 hover:text-[var(--color-accent)] transition-colors duration-150"
           >
-            {copied ? (
-              <>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <polyline points="20 6 9 17 4 12"/>
-                </svg>
-                Copié !
-              </>
-            ) : (
-              <>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                  <polyline points="22,6 12,13 2,6"/>
-                </svg>
-                {PROFILE.email}
-              </>
-            )}
-          </button>
+            {PROFILE.email}
+          </a>
 
           <div className="flex items-center justify-center gap-6">
             <SocialLink href={PROFILE.github} label="GitHub">

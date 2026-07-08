@@ -8,7 +8,6 @@ import { ArchitectureDiagram } from '@/components/ArchitectureDiagram'
 import { ScrollProgress } from '@/components/ScrollProgress'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
-import { on } from 'process'
 
 interface Props {
   project: Project
@@ -84,7 +83,7 @@ export function ProjectPageClient({ project, prevProject, nextProject }: Props) 
               </div>
 
               {/* Title */}
-              <h1 className="font-display font-extrabold text-4xl md:text-5xl text-[var(--color-text)] tracking-tight leading-[1.05] mb-4">
+              <h1 className="font-display font-extrabold text-4xl md:text-5xl text-[var(--color-text)] leading-[1.05] mb-4">
                 {project.title}
               </h1>
 
@@ -106,7 +105,7 @@ export function ProjectPageClient({ project, prevProject, nextProject }: Props) 
 
               {/* Stack */}
               <div className="mb-8">
-                <p className="label-mono mb-3">// stack_utilisée</p>
+                <p className="label-mono mb-3">{'// stack_utilisée'}</p>
                 <div className="flex flex-wrap gap-2">
                   {project.stack.map(s => (
                     <span key={s} className="tag">{s}</span>
@@ -143,7 +142,7 @@ export function ProjectPageClient({ project, prevProject, nextProject }: Props) 
 
                 {/* Situation */}
                 <div>
-                  <p className="label-mono mb-3">// situation_initiale</p>
+                  <p className="label-mono mb-3">{'// situation_initiale'}</p>
                   <p className="text-base text-[var(--color-muted)] leading-relaxed">
                     {cs.context.situation}
                   </p>
@@ -155,7 +154,7 @@ export function ProjectPageClient({ project, prevProject, nextProject }: Props) 
                   border-l-2 border-[var(--color-accent)]
                   bg-[var(--color-surface)]
                 ">
-                  <p className="label-mono mb-2 text-[var(--color-accent)]/70">// problème_identifié</p>
+                  <p className="label-mono mb-2 text-[var(--color-accent)]/70">{'// problème_identifié'}</p>
                   <p className="text-base text-[var(--color-text)] leading-relaxed">
                     {cs.context.problem}
                   </p>
@@ -163,7 +162,7 @@ export function ProjectPageClient({ project, prevProject, nextProject }: Props) 
 
                 {/* Objectifs */}
                 <div>
-                  <p className="label-mono mb-4">// objectifs[]</p>
+                  <p className="label-mono mb-4">{'// objectifs[]'}</p>
                   <ul className="space-y-3" role="list">
                     {cs.context.goals.map((goal, i) => (
                       <li key={i} className="flex items-start gap-3">
@@ -195,7 +194,7 @@ export function ProjectPageClient({ project, prevProject, nextProject }: Props) 
               <CaseSection id="video" label="03" title="Motion / Vidéo">
                 <div className="space-y-4">
                   {cs.video.title && (
-                    <p className="label-mono">// {cs.video.title}</p>
+                    <p className="label-mono">{`// ${cs.video.title}`}</p>
                   )}
 
                   <div className="rounded-md overflow-hidden border border-[var(--color-border)] bg-[var(--color-surface)]">
@@ -236,9 +235,9 @@ export function ProjectPageClient({ project, prevProject, nextProject }: Props) 
           /* Projet sans étude de cas — fallback propre */
           <div className="container-main py-16 max-w-[900px]">
             <div className="p-8 rounded-md border border-[var(--color-border)] bg-[var(--color-surface)] text-center">
-              <p className="label-mono mb-3">// case_study: null</p>
+              <p className="label-mono mb-3">{'// case_study: null'}</p>
               <p className="text-[var(--color-muted)] text-sm">
-                L'étude de cas détaillée de ce projet n'est pas encore disponible.
+                L’étude de cas détaillée de ce projet n’est pas encore disponible.
               </p>
             </div>
           </div>
@@ -358,7 +357,7 @@ function ScreenshotBlock({
           >
             <div className="text-center">
               <p className="label-mono text-white/60 mb-1">
-                // screenshot_{String(index + 1).padStart(2, '0')}
+                {`// screenshot_${String(index + 1).padStart(2, '0')}`}
               </p>
               <p className="font-mono text-xs text-white/40">{shot.alt}</p>
             </div>

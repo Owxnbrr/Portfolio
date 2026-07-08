@@ -1,11 +1,11 @@
 import { PROFILE } from '@/data/portfolio'
 import { SectionHeader } from './SectionHeader'
 
-const INTERESTS = [
-  { icon: '⬡', label: 'Sport', desc: 'escalade, salle' },
-  { icon: '⬡', label: 'E-sport', desc: 'joueur en équipe EVA (VR arena), coordination & stratégie' },
-  { icon: '⬡', label: 'Culture visuelle', desc: 'cinéma, typographie, photo' },
-  { icon: '⬡', label: 'Design systèmes', desc: 'accessibilité, détails, cohérence' },
+const APPROACH = [
+  { icon: '01', label: 'Cadrage', desc: 'objectifs, contenus, priorités et contraintes du projet' },
+  { icon: '02', label: 'Design', desc: 'maquettes Figma, hiérarchie visuelle et parcours utilisateur' },
+  { icon: '03', label: 'Développement', desc: 'intégration responsive, performance et maintenance du code' },
+  { icon: '04', label: 'Mise en ligne', desc: 'déploiement, ajustements et accompagnement après livraison' },
 ]
 
 export function About() {
@@ -15,13 +15,14 @@ export function About() {
         <SectionHeader
           id="05"
           label="à propos"
-          title="L'humain derrière le code"
+          title="Un accompagnement web complet"
+          subtitle="De la première idée à la mise en ligne, je garde le même objectif : rendre votre site clair, fiable et simple à faire évoluer."
         />
 
         <div className="mt-10 grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-12 items-start">
 
           <div className="space-y-5">
-            <p className="label-mono">// bio.txt</p>
+            <p className="label-mono">{'// bio.txt'}</p>
             {PROFILE.bio.split('\n').filter(Boolean).map((para, i) => (
               <p key={i} className="text-base text-[var(--color-muted)] leading-relaxed">
                 {para.trim()}
@@ -36,9 +37,9 @@ export function About() {
           </div>
 
           <div>
-            <p className="label-mono mb-4">// centres_interet[]</p>
+            <p className="label-mono mb-4">{'// approche_projet[]'}</p>
             <div className="space-y-3">
-              {INTERESTS.map(item => (
+              {APPROACH.map(item => (
                 <div
                   key={item.label}
                   className="

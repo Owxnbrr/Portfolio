@@ -4,10 +4,10 @@ import { useEffect, useRef, useState } from 'react'
 import { PROFILE } from '@/data/portfolio'
 
 const ROLES = [
-  'développeur web',
-  'alternant React/Next.js',
-  'constructeur d\'interfaces',
-  'fan des détails',
+  'créateur de sites web',
+  'webdesigner freelance',
+  'React / Next.js',
+  'WordPress / WooCommerce',
 ]
 
 function useTypewriter(strings: string[], speed = 70, pause = 1600) {
@@ -81,24 +81,20 @@ export function Hero() {
               className="label-mono mb-6 animate-fade-in"
               style={{ animationDelay: '0ms' }}
             >
-              // développeur web & alternant
+              {'// Noah Bucheton EI'}
             </p>
 
             <h1
               className="
                 font-display font-extrabold leading-[0.95]
                 text-4xl md:text-[5rem]
-                tracking-[-0.04em]
                 text-[var(--color-text)]
                 animate-fade-up
               "
               style={{ animationDelay: '100ms' }}
             >
-              {PROFILE.name.split(' ').map((part, i) => (
-                <span key={i} className={i === 1 ? 'block text-[var(--color-accent)]' : 'block'}>
-                  {part}
-                </span>
-              ))}
+              <span className="block">Développeur web</span>
+              <span className="block text-[var(--color-accent)]">& webdesigner freelance</span>
             </h1>
 
             <p
@@ -108,7 +104,7 @@ export function Hero() {
               "
               style={{ animationDelay: '200ms' }}
             >
-              {PROFILE.tagline}
+              J’aide les indépendants, associations et entreprises à créer des sites internet modernes, performants et adaptés à leurs objectifs.
             </p>
 
             <div
@@ -120,7 +116,7 @@ export function Hero() {
               aria-live="polite"
               aria-atomic="true"
             >
-              <span className="text-[var(--color-muted)]">$ whoami → </span>
+              <span className="text-[var(--color-muted)]">$ services → </span>
               <span className="text-[var(--color-accent)]">{display}</span>
               <span
                 className={`inline-block w-[2px] h-[1em] ml-[2px] bg-[var(--color-accent)] align-middle transition-opacity duration-100 ${cursor ? 'opacity-100' : 'opacity-0'}`}
@@ -136,7 +132,7 @@ export function Hero() {
               style={{ animationDelay: '360ms' }}
             >
               <a
-                href="#projects"
+                href="#services"
                 className="
                   inline-flex items-center gap-2
                   px-6 py-3 rounded-md
@@ -147,7 +143,7 @@ export function Hero() {
                   transition-all duration-150
                 "
               >
-                Voir mes projets
+                Voir mes services
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M5 12h14M12 5l7 7-7 7"/>
                 </svg>
@@ -219,14 +215,12 @@ export function Hero() {
 
 function Terminal() {
   const lines = [
-    { prefix: '$ ', content: 'node --version', color: 'text-[var(--color-text)]' },
-    { prefix: '  ', content: 'v20.11.0', color: 'text-[var(--color-success)]' },
-    { prefix: '$ ', content: 'git log --oneline -5', color: 'text-[var(--color-text)]' },
-    { prefix: '  ', content: 'a3f2c8d feat: add dark theme toggle', color: 'text-[var(--color-muted)]' },
-    { prefix: '  ', content: 'b8e1f4a fix: mobile nav z-index', color: 'text-[var(--color-muted)]' },
-    { prefix: '  ', content: 'c2d7e9b refactor: extract hooks', color: 'text-[var(--color-muted)]' },
-    { prefix: '  ', content: 'd4c8f2e feat: scroll progress bar', color: 'text-[var(--color-muted)]' },
-    { prefix: '  ', content: 'e7a1b3c chore: init portfolio v2', color: 'text-[var(--color-muted)]' },
+    { prefix: '$ ', content: 'cat services.md', color: 'text-[var(--color-text)]' },
+    { prefix: '  ', content: '- sites vitrines', color: 'text-[var(--color-success)]' },
+    { prefix: '  ', content: '- boutiques WooCommerce', color: 'text-[var(--color-success)]' },
+    { prefix: '  ', content: '- refontes & maintenance', color: 'text-[var(--color-success)]' },
+    { prefix: '$ ', content: 'stack --current', color: 'text-[var(--color-text)]' },
+    { prefix: '  ', content: 'Next.js · TypeScript · Figma · WordPress', color: 'text-[var(--color-muted)]' },
     { prefix: '$ ', content: 'npm run build', color: 'text-[var(--color-text)]' },
     { prefix: '  ', content: '✓ Compiled successfully', color: 'text-[var(--color-success)]' },
     { prefix: '  ', content: '  Route (app)  Size', color: 'text-[var(--color-muted)]' },
@@ -249,7 +243,7 @@ function Terminal() {
         <div className="w-3 h-3 rounded-full bg-[var(--color-danger)]/80" />
         <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
         <div className="w-3 h-3 rounded-full bg-[var(--color-success)]/80" />
-        <span className="ml-3 text-xs text-[var(--color-muted)]">Noah@portfolio — zsh</span>
+        <span className="ml-3 text-xs text-[var(--color-muted)]">Noah@freelance — zsh</span>
       </div>
 
       <div className="

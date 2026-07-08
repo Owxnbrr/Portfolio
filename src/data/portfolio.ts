@@ -1,14 +1,14 @@
 export const PROFILE = {
   name: 'Noah Bucheton',
-  role: 'Développeur Web & Designer UI/UX',
-  tagline: 'Je construis des interfaces qui font sens — React, Node.js, et une obsession pour les détails.',
-  bio: `Développeur web fullstack avec un vrai biais frontend : j’aime les interfaces rapides, propres, et cohérentes.
-Je travaille principalement en React/TypeScript et je fais attention aux détails : accessibilité, performance et design system.
-Aujourd’hui, je cherche des missions/opportunités où je peux livrer vite, bien, et de façon maintenable.`,
+  role: 'Développeur web & webdesigner freelance',
+  tagline: 'Je conçois des sites vitrines, boutiques en ligne et interfaces web modernes, rapides et faciles à maintenir.',
+  bio: `Développeur web fullstack avec un vrai biais frontend, j’accompagne les indépendants, associations et entreprises dans la création de sites internet modernes, performants et adaptés à leurs besoins.
+Je travaille principalement avec React, Next.js, TypeScript, WordPress/WooCommerce et Figma, avec une attention particulière portée au responsive, à la performance, à l’accessibilité et à la qualité visuelle.
+Mon objectif : livrer des solutions claires, propres et maintenables, avec un accompagnement simple du début à la mise en ligne.`,
   email: 'noah.bucheton@gmail.com',
   github: 'https://github.com/Owxnbrr/',
   linkedin: 'https://linkedin.com/in/noah-bucheton',
-  availability: 'Disponible pour des opportunités',
+  availability: 'Disponible pour vos projets web',
   location: 'Amiens, France',
   buildHash: 'a3f2c8d',
 }
@@ -76,15 +76,54 @@ export type Project = {
   caseStudy?: CaseStudy
 }
 
+export type Service = {
+  id: string
+  title: string
+  description: string
+}
+
+export const SERVICES: Service[] = [
+  {
+    id: 'site-vitrine',
+    title: 'Création de site vitrine',
+    description: 'Création de sites modernes, responsives et faciles à comprendre pour présenter votre activité, vos services et générer des contacts.',
+  },
+  {
+    id: 'woocommerce',
+    title: 'Boutique en ligne WooCommerce',
+    description: 'Mise en place de boutiques en ligne claires et administrables pour vendre vos produits avec une expérience d’achat simple.',
+  },
+  {
+    id: 'figma',
+    title: 'Webdesign / maquette Figma',
+    description: 'Conception d’interfaces propres et cohérentes avant le développement, pour valider l’expérience utilisateur et l’identité visuelle.',
+  },
+  {
+    id: 'refonte',
+    title: 'Refonte de site',
+    description: 'Amélioration d’un site existant pour le rendre plus moderne, plus lisible, plus rapide et mieux adapté aux usages actuels.',
+  },
+  {
+    id: 'maintenance-wordpress',
+    title: 'Maintenance WordPress',
+    description: 'Mises à jour, corrections, ajustements visuels et accompagnement pour garder un site fiable dans le temps.',
+  },
+  {
+    id: 'sur-mesure',
+    title: 'Développement web sur mesure',
+    description: 'Création de fonctionnalités spécifiques, interfaces ou outils web adaptés à un besoin métier précis.',
+  },
+]
+
 export const PROJECTS: Project[] = [
   {
   id: 'ipp-election',
   hash: 'ippel26',
   title: 'IPP Election',
-  description: 'Plateforme de commande de documents électoraux pour mairies : parcours multi-étapes, calcul de prix, paiement Stripe et gestion des commandes.'  ,
-  longDescription: `Projet web réalisé pour IPP afin de simplifier la commande de documents électoraux pour les mairies françaises.
-Le site structure un parcours clair : présentation des produits, explication des étapes de commande, puis CTA vers le tunnel.
-Le travail a porté sur la clarté de l’information, la hiérarchie visuelle et la mise en confiance (cadre B2B/institutionnel).`,
+  description: 'Plateforme de commande de documents électoraux pour mairies : parcours guidé, calcul de prix, paiement Stripe et suivi des commandes.',
+  longDescription: `Plateforme web réalisée pour IPP afin de simplifier la commande de documents électoraux par les mairies françaises.
+Le site clarifie l’offre, guide les utilisateurs vers un tunnel de commande et sécurise les étapes clés : choix des produits, calcul de prix, paiement Stripe et suivi des commandes.
+Le travail a porté sur la lisibilité, la confiance et la fluidité d’un parcours B2B institutionnel.`,
   tags: ['Next.js', 'TypeScript', 'Supabase', 'Stripe'],
   stack: [
   'Next.js 14 (App Router)',
@@ -109,17 +148,17 @@ Le travail a porté sur la clarté de l’information, la hiérarchie visuelle e
     role: 'Développeur fullstack solo',
     context: {
       situation: "IPP propose un service d’impression de documents électoraux pour les mairies, avec des produits et options spécifiques (formats, quantités, recto/verso).",
-      problem: "Présenter une offre technique et réglementée de manière simple, compréhensible et rassurante, tout en orientant efficacement vers la commande.",
+      problem: "Transformer une offre technique et réglementée en parcours de commande clair, rassurant et suffisamment guidé pour limiter les erreurs.",
       goals: [
         'Clarifier les types de produits électoraux (affiches, bulletins, professions de foi)',
         'Rendre le parcours de commande lisible en quelques étapes',
-        'Mettre en avant des CTA clairs vers la commande',
+        'Mettre en avant des CTA clairs vers le tunnel de commande',
         'Créer une interface sobre et rassurante pour une cible institutionnelle',
       ],
     },
     architecture: {
       description:
-        "Structure en pages : Home, Commande, pages légales. Navigation pensée pour réduire le nombre d’étapes entre découverte et prise de contact. Déploiement sur Netlify.",
+        "Structure en pages : accueil, commande et pages légales. Le parcours relie la présentation des produits au tunnel de commande, avec Supabase pour les données et Stripe pour le paiement. Déploiement sur Netlify.",
       diagram: {
         nodes: [
           { id: 'home', label: 'Home', type: 'client' },
@@ -127,12 +166,13 @@ Le travail a porté sur la clarté de l’information, la hiérarchie visuelle e
           { id: 'deploy', label: 'Netlify', type: 'infra' },
           { id: 'sb', label: 'Supabase', type: 'service' },
           { id: 'db', label: 'PostgreSQL (Supabase)', type: 'db' },
-          {id: 'pay', label: 'Stripe', type: 'client' },
+          { id: 'pay', label: 'Stripe', type: 'service' },
         ],
         edges: [
           { from: 'home', to: 'commande', label: 'CTA' },
           { from: 'commande', to: 'pay', label: 'paiement' },
-          { from: 'deploy', to: 'home', label: 'deployement', },
+          { from: 'commande', to: 'sb', label: 'commande' },
+          { from: 'deploy', to: 'home', label: 'déploiement' },
           { from: 'sb', to: 'db', label: 'SQL' },
         ],
       },
@@ -160,9 +200,9 @@ Le travail a porté sur la clarté de l’information, la hiérarchie visuelle e
   id: 'ippcom-goodies',
   hash: 'ippc0m1',
   title: 'IPPCom Goodies',
-  description: "Site catalogue de goodies : navigation par catégories, catalogue paginé et parcours de contact.",
-  longDescription: `Mise en place d’un site vitrine orienté conversion pour une offre de goodies.
-Objectif : permettre de parcourir rapidement les catégories/collections et déclencher une demande via la page contact.`,
+  description: "Site catalogue pour une offre de goodies personnalisés : navigation par catégories, recherche produit, catalogue paginé et demande de devis.",
+  longDescription: `Mise en place d’un site vitrine/catalogue orienté conversion pour une offre de goodies personnalisés.
+Objectif : aider les visiteurs à explorer rapidement les collections, comprendre l’offre et déclencher une demande via un parcours de contact clair.`,
   tags: ['Next.js', 'TypeScript', 'Catalogue', 'Commandes', 'Dashboard', 'Supabase'],
   stack: [
   'Next.js (App Router)',
@@ -185,14 +225,14 @@ Objectif : permettre de parcourir rapidement les catégories/collections et déc
     role: 'Développeur fullstack solo',
     context: {
       situation:
-        "Créer un point d’entrée clair pour présenter l’offre de goodies et faciliter la découverte des produits par collections/catégories grâce a l'API de ANDA.",
+        "Créer un point d’entrée clair pour présenter l’offre de goodies et faciliter la découverte des produits par collections/catégories grâce à l’API d’ANDA.",
       problem:
-        "Un site catalogue peut vite devenir confus : trop d’infos, trop de clics, ou une navigation peu lisible. Le défi était de garder une expérience simple tout en donnant accès rapidement aux catégories et au catalogue.",
+        "Un site catalogue peut vite devenir confus : trop d’informations, trop de clics ou une navigation peu lisible. Le défi était de garder une expérience simple tout en donnant accès rapidement aux catégories et aux produits.",
       goals: [
-        'Home claire avec sections éditoriales + CTA',
+        'Accueil clair avec sections éditoriales et CTA',
         'Accès rapide au catalogue et aux catégories principales',
         'Catalogue paginé pour garder une page légère',
-        'Parcours de contact évident (footer + page dédiée)',
+        'Parcours de contact évident via le footer et une page dédiée',
         'Déploiement stable et accessible publiquement',
       ],
     },
@@ -215,8 +255,8 @@ Objectif : permettre de parcourir rapidement les catégories/collections et déc
           { from: 'home', to: 'cats', label: 'navigation' },
           { from: 'catalog', to: 'contact', label: 'demande' },
           { from: 'home', to: 'contact', label: 'contact' },
-          { from: 'deploy', to: 'home', label: '', },
-          { from: 'client', to: 'sb', label: 'auth / data' },
+          { from: 'deploy', to: 'home', label: 'déploiement' },
+          { from: 'catalog', to: 'sb', label: 'produits' },
           { from: 'sb', to: 'db', label: 'SQL' },
         ],
       },
@@ -250,8 +290,8 @@ Objectif : permettre de parcourir rapidement les catégories/collections et déc
   id: 'discollection',
   hash: 'uxfigma26',
   title: 'Discollection',
-  description: 'Prototype UX/UI mobile d’une application de collection de vinyles (catalogue, recherche, fiches, parcours utilisateur) réalisé sur Figma.',
-  longDescription: `Projet de maquettage UX/UI mobile autour d’une application de collection de vinyles.
+  description: 'Prototype mobile conçu sur Figma pour une application de collection de vinyles : catalogue, recherche, fiches et parcours utilisateur.',
+  longDescription: `Prototype UX/UI mobile autour d’une application de collection de vinyles.
 Travail sur l’architecture de l’information, les parcours utilisateurs, la hiérarchie visuelle et la cohérence des écrans.
 Prototype interactif réalisé sur Figma avec transitions et micro-interactions (dont animation du logo vinyle).`,
   tags: ['Figma', 'UX/UI', 'Prototype', 'Mobile'],
@@ -264,8 +304,8 @@ Prototype interactif réalisé sur Figma avec transitions et micro-interactions 
   },
   gradient: 'linear-gradient(135deg, #60A5FA 0%, #1E3A8A 100%)',
   caseStudy: {
-    duration: 'Projet scolaire (UX/UI)',
-    role: 'UX/UI Designer (maquettage & prototype mobile)',
+    duration: 'Prototype UX/UI mobile',
+    role: 'UX/UI Designer (maquette & prototype mobile)',
     context: {
       situation: "Projet de conception d’une application de collection de vinyles avec un périmètre volontairement centré sur l’expérience mobile.",
       problem: "Concevoir une interface mobile claire et engageante pour consulter, rechercher et organiser une collection de vinyles sans surcharger la navigation.",
@@ -325,7 +365,7 @@ Prototype interactif réalisé sur Figma avec transitions et micro-interactions 
   id: 'logo-motion-plane',
   hash: 'md2024a',
   title: 'Logo Animation Plane',
-  description: 'Reproduction d’une animation de logo : vectorisation, décomposition des éléments, animation et compositing sur fond vidéo.',
+  description: 'Animation de logo et compositing vidéo : vectorisation, décomposition des éléments et intégration sur fond vidéo.',
   longDescription: `Exercice de motion design centré sur la reproduction d’une animation à partir d’une référence vidéo.
 Le logo a été redessiné sur Illustrator, séparé en éléments, puis animé en respectant le rythme et l’esthétique attendus.
 Le rendu final intègre une vidéo d’avion en arrière-plan pour le compositing.`,
@@ -337,8 +377,8 @@ Le rendu final intègre une vidéo d’avion en arrière-plan pour le compositin
   links: {},
   gradient: 'linear-gradient(135deg, #d19315 0%, #0A0F1E 100%)',
   caseStudy: {
-    duration: 'Projet pédagogique (motion design)',
-    role: 'Motion designer (vectorisation, animation, compositing)',
+    duration: 'Exercice de motion design',
+    role: 'Motion designer (animation de logo & compositing)',
     context: {
       situation: "Exercice de reproduction d’une animation de logo à partir d’une référence fournie.",
       problem: "Reproduire fidèlement l’esthétique et le rythme d’une animation en reconstruisant le logo et en préparant les éléments pour l’animation.",
@@ -375,10 +415,10 @@ export const SKILLS: SkillGroup[] = [
     id: 'frontend',
     label: 'FRONTEND_',
     skills: [
-      { name: 'React', icon: 'Re', level: '// daily', projects: ['ippcom-goodies'] },
-      { name: 'Next.js', icon: 'Nx', level: '// daily', projects: ['ippcom-goodies'] },
-      { name: 'TypeScript', icon: 'TS', level: '// daily', projects: ['ippcom-goodies'] },
-      { name: 'Tailwind CSS', icon: 'TW', level: '// daily', projects: ['ippcom-goodies'] },
+      { name: 'React', icon: 'Re', level: '// daily', projects: ['ipp-election', 'ippcom-goodies'] },
+      { name: 'Next.js', icon: 'Nx', level: '// daily', projects: ['ipp-election', 'ippcom-goodies'] },
+      { name: 'TypeScript', icon: 'TS', level: '// daily', projects: ['ipp-election', 'ippcom-goodies'] },
+      { name: 'Tailwind CSS', icon: 'TW', level: '// daily', projects: ['ipp-election', 'ippcom-goodies'] },
       { name: 'CSS / SCSS', icon: 'Cs', level: '// daily' },
       { name: 'HTML Semantic', icon: 'Ht', level: '// daily' },
       { name: 'Responsive Design', icon: 'Rs', level: '// daily' },
@@ -389,9 +429,11 @@ export const SKILLS: SkillGroup[] = [
     id: 'backend',
     label: 'BACKEND_',
     skills: [
-      { name: 'Node.js', icon: 'Nd', level: '// daily', projects: ['ippcom-goodies'] },
-      { name: 'Supabase', icon: 'Sb', level: '// daily', projects: ['ippcom-goodies'] },
-      { name: 'PostgreSQL', icon: 'Pg', level: '// daily', projects: ['ippcom-goodies'] },
+      { name: 'Node.js', icon: 'Nd', level: '// daily', projects: ['ipp-election', 'ippcom-goodies'] },
+      { name: 'Supabase', icon: 'Sb', level: '// daily', projects: ['ipp-election', 'ippcom-goodies'] },
+      { name: 'PostgreSQL', icon: 'Pg', level: '// daily', projects: ['ipp-election', 'ippcom-goodies'] },
+      { name: 'WordPress', icon: 'Wp', level: '// familiar' },
+      { name: 'WooCommerce', icon: 'Wc', level: '// familiar' },
       { name: 'Auth JWT', icon: 'Au', level: '// familiar', projects: ['ippcom-goodies'] },
     ],
   },
@@ -400,7 +442,7 @@ export const SKILLS: SkillGroup[] = [
     label: 'DEVOPS_',
     skills: [
       { name: 'Git / GitHub', icon: 'Gt', level: '// daily' },
-      { name: 'Vercel', icon: 'Vc', level: '// daily' },
+      { name: 'Netlify', icon: 'Nf', level: '// daily' },
       { name: 'Docker', icon: 'Dk', level: '// familiar' },
       { name: 'CI/CD', icon: 'CI', level: '// learning' },
     ],
@@ -456,8 +498,8 @@ export const EXPERIENCES: Experience[] = [
     company: 'Imprimerie du Plateau Picard',
     location: 'Montdidier, France',
     dateRange: 'Sept. 2025 — Oct. 2026',
-    description: 'Développement de sites web. Création de contenu pour les réseaux sociaux.',
-    tags: ['React', 'TypeScript', 'Illustrator', 'Photoshop'],
+    description: 'Création et amélioration de sites web, intégration d’interfaces, maintenance WordPress, supports graphiques et accompagnement digital pour une imprimerie.',
+    tags: ['React', 'TypeScript', 'WordPress', 'Illustrator', 'Photoshop'],
   },
   {
     id: 'exp-02',
@@ -466,7 +508,7 @@ export const EXPERIENCES: Experience[] = [
     company: 'Imprimerie du Plateau Picard',
     location: 'Montdidier, France',
     dateRange: '3 mois en 2025',
-    description: 'Développement de sites web. Création de contenu pour les réseaux sociaux.',
+    description: 'Développement de sites web, intégration front-end, participation à des supports de communication digitale et création de contenus graphiques.',
     tags: ['React', 'WordPress', 'TypeScript', 'Illustrator', 'Photoshop'],
   },
   {
@@ -476,13 +518,13 @@ export const EXPERIENCES: Experience[] = [
     company: 'LA MANU',
     location: 'Amiens, France',
     dateRange: 'Oct. 2023 — Présent',
-    description: 'Formation en alternance. Cours : Design UX / UI, Marketing et communication, CMS et interfaces web, Design 3D, vidéo et Motion Design, Culture graphique, Gestion de projet',
+    description: 'Formation en alternance orientée conception web, design UX/UI, marketing digital, CMS, interfaces web, motion design, culture graphique et gestion de projet.',
     tags: ['UX/UI', 'Marketing digital', 'Gestion de projet'],
   },
   {
     id: 'edu-02',
     type: 'education',
-    title: 'BACCALAUREAT Technologique STI2D',
+    title: 'Baccalauréat technologique STI2D',
     company: 'Lycée Saint Riquier',
     location: 'Amiens, France',
     dateRange: '2020 — 2023',

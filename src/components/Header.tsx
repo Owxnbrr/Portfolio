@@ -2,10 +2,10 @@
 
 import { useState, useEffect } from 'react'
 import { useTheme } from '@/hooks/useTheme'
-import { PROFILE } from '@/data/portfolio'
 import Image from 'next/image'
 
 const NAV_LINKS = [
+  { label: 'Services',     href: '#services' },
   { label: 'Projets',      href: '#projects' },
   { label: 'Compétences', href: '#skills' },
   { label: 'Parcours',    href: '#experience' },
@@ -197,7 +197,7 @@ export function Header() {
         ))}
 
         <div className="mt-auto pb-8 border-t border-[var(--color-border)] pt-6">
-          <p className="label-mono mb-2">// thème actuel</p>
+          <p className="label-mono mb-2">{'// thème actuel'}</p>
           <button
             onClick={() => { toggle(); setMenuOpen(false) }}
             className="

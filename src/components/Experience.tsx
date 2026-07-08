@@ -17,7 +17,7 @@ export function Experience() {
           id="04"
           label="parcours"
           title="Expériences & Formation"
-          subtitle="Chaque entrée est un commit dans mon historique professionnel."
+          subtitle="Un parcours mêlant développement web, webdesign, communication digitale et gestion de projet."
         />
 
         <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-12">

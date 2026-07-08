@@ -9,9 +9,9 @@ export function SectionHeader({ id, label, title, subtitle }: SectionHeaderProps
   return (
     <div className="mb-2">
       <p className="label-mono mb-3">
-        // section_{id} — {label}
+        {`// section_${id} — ${label}`}
       </p>
-      <h2 className="font-display font-bold text-3xl md:text-[2.25rem] text-[var(--color-text)] tracking-tight">
+      <h2 className="font-display font-bold text-3xl md:text-[2.25rem] text-[var(--color-text)]">
         {title}
       </h2>
       {subtitle && (

@@ -5,19 +5,21 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://noahbucheton.fr"),
   title: {
-    default: "Noah Bucheton | Développeur Web & Designer",
+    default: "Noah Bucheton — Développeur web & webdesigner freelance",
     template: "%s | Noah Bucheton",
   },
   description:
-    "Portfolio de Noah Bucheton, développeur web & designer : projets web, UI/UX, branding et réalisations créatives.",
+    "Création de sites internet, boutiques en ligne, webdesign, développement web et maintenance pour indépendants, associations et entreprises.",
   keywords: [
     "Noah Bucheton",
-    "portfolio",
+    "Noah Bucheton EI",
     "développeur web",
-    "web designer",
-    "UI UX",
+    "webdesigner freelance",
+    "création site internet",
+    "boutique WooCommerce",
+    "maintenance WordPress",
+    "webdesign",
     "Next.js",
-    "freelance",
   ],
   authors: [{ name: "Noah Bucheton" }],
   creator: "Noah Bucheton",
@@ -38,9 +40,9 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: "https://noahbucheton.fr",
-    title: "Noah Bucheton | Développeur Web & Designer",
+    title: "Noah Bucheton — Développeur web & webdesigner freelance",
     description:
-      "Portfolio de Noah Bucheton : projets web, UI/UX, branding et réalisations créatives.",
+      "Création de sites internet, boutiques en ligne, webdesign, développement web et maintenance pour indépendants, associations et entreprises.",
     siteName: "Noah Bucheton",
     locale: "fr_FR",
     images: [
@@ -48,15 +50,15 @@ export const metadata: Metadata = {
         url: "/og-image.jpg", 
         width: 1200,
         height: 630,
-        alt: "Portfolio Noah Bucheton",
+        alt: "Noah Bucheton, développeur web et webdesigner freelance",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Noah Bucheton | Développeur Web & Designer",
+    title: "Noah Bucheton — Développeur web & webdesigner freelance",
     description:
-      "Portfolio de Noah Bucheton : projets web, UI/UX, branding et réalisations créatives.",
+      "Création de sites internet, boutiques en ligne, webdesign, développement web et maintenance pour indépendants, associations et entreprises.",
     images: ["/og-image.jpg"],
   },
     icons: {

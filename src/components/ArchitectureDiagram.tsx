@@ -52,7 +52,7 @@ export function ArchitectureDiagram({ diagram }: Props) {
       aria-label="Diagramme d'architecture du projet"
     >
       <div className="px-5 py-3 border-b border-[var(--color-border)] flex items-center gap-3">
-        <span className="label-mono">// architecture_diagram</span>
+        <span className="label-mono">{'// architecture_diagram'}</span>
         <div className="ml-auto flex items-center gap-4">
           {(Object.keys(NODE_STYLES) as ArchitectureNode['type'][])
             .filter(type => nodes.some(n => n.type === type))

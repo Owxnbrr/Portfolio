@@ -38,9 +38,9 @@ export function Projects() {
       <div className="container-main">
         <SectionHeader
           id="02"
-          label="projets"
-          title="Ce que j'ai construit"
-          subtitle={`${PROJECTS.length} projets — code lisible, architecture réfléchie.`}
+          label="réalisations"
+          title="Projets & études de cas"
+          subtitle={`${PROJECTS.length} réalisations — parcours utilisateur, interface, architecture et mise en ligne.`}
         />
 
         <div className="flex flex-wrap gap-2 mt-8 mb-10" role="tablist" aria-label="Filtrer les projets">
@@ -64,7 +64,7 @@ export function Projects() {
             </button>
           ))}
           <span className="ml-auto label-mono self-center">
-            // {filtered.length} résultat{filtered.length > 1 ? 's' : ''}
+            {`// ${filtered.length} résultat${filtered.length > 1 ? 's' : ''}`}
           </span>
         </div>
 

@@ -20,7 +20,7 @@ export function Skills() {
           id="03"
           label="compétences"
           title="Stack & outils"
-          subtitle="Pas de barres de progression. Des preuves : chaque techno est liée aux projets qui l'utilisent."
+          subtitle="Les outils que j’utilise pour concevoir, développer et maintenir des sites modernes."
         />
 
         <div className="mt-10 space-y-10">
@@ -52,7 +52,7 @@ export function Skills() {
           flex flex-wrap items-center gap-4
         ">
           <div>
-            <p className="label-mono mb-1">// actuellement en apprentissage</p>
+            <p className="label-mono mb-1">{'// actuellement en apprentissage'}</p>
             <div className="flex flex-wrap gap-2 mt-2">
               {['Playwright (E2E)', 'React Testing Library', 'Web perf (Lighthouse)', 'Accessibilité (WCAG)'].map(item => (
                 <span key={item} className="tag" style={{
