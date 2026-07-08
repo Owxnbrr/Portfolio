@@ -48,13 +48,30 @@ export function ProjectPageClient({ project, prevProject, nextProject }: Props) 
           className="relative py-20 border-b border-[var(--color-border)] overflow-hidden"
           aria-label={`Projet ${project.title}`}
         >
-          {/* Gradient décoratif */}
+          {project.coverImage ? (
+            <Image
+              src={project.coverImage}
+              alt=""
+              fill
+              priority
+              className="object-cover opacity-35"
+              sizes="100vw"
+              aria-hidden="true"
+            />
+          ) : (
+            <div
+              className="absolute inset-0 opacity-20 pointer-events-none"
+              style={{ background: project.gradient }}
+              aria-hidden="true"
+            />
+          )}
+          <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-bg)] via-[var(--color-bg)]/85 to-[var(--color-bg)]/30 pointer-events-none" aria-hidden="true" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-bg)] via-[var(--color-bg)]/55 to-transparent pointer-events-none" aria-hidden="true" />
           <div
-            className="absolute inset-0 opacity-20 pointer-events-none"
-            style={{ background: project.gradient }}
+            className="absolute inset-0 opacity-70 mix-blend-screen pointer-events-none"
+            style={{ background: 'radial-gradient(circle at 78% 18%, rgba(var(--color-accent-rgb), 0.26), transparent 38%)' }}
             aria-hidden="true"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-bg)] via-[var(--color-bg)]/80 to-transparent pointer-events-none" aria-hidden="true" />
 
           <div className="container-main relative z-10">
 
@@ -232,14 +249,17 @@ export function ProjectPageClient({ project, prevProject, nextProject }: Props) 
 
           </div>
         ) : (
-          /* Projet sans étude de cas — fallback propre */
           <div className="container-main py-16 max-w-[900px]">
-            <div className="p-8 rounded-md border border-[var(--color-border)] bg-[var(--color-surface)] text-center">
-              <p className="label-mono mb-3">{'// case_study: null'}</p>
-              <p className="text-[var(--color-muted)] text-sm">
-                L’étude de cas détaillée de ce projet n’est pas encore disponible.
-              </p>
-            </div>
+            <CaseSection id="overview" label="01" title="Aperçu du projet">
+              <div className="space-y-5">
+                <p className="label-mono">{'// description_longue'}</p>
+                {project.longDescription.split('\n').filter(Boolean).map((paragraph, i) => (
+                  <p key={i} className="text-base text-[var(--color-muted)] leading-relaxed">
+                    {paragraph.trim()}
+                  </p>
+                ))}
+              </div>
+            </CaseSection>
           </div>
         )}
 

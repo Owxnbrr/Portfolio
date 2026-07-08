@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import { PROJECTS, type Project } from '@/data/portfolio'
 import { SectionHeader } from './SectionHeader'
 
@@ -85,15 +86,36 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       style={{ animationDelay: `${index * 80}ms` }}
     >
       <div
-        className="relative h-44 overflow-hidden"
-        style={{ background: project.gradient }}
+        className="relative h-48 overflow-hidden bg-[var(--color-surface)]"
+        style={!project.coverImage ? { background: project.gradient } : undefined}
       >
+        {project.coverImage ? (
+          <Image
+            src={project.coverImage}
+            alt={`Couverture du projet ${project.title}`}
+            fill
+            className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.06]"
+            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 560px"
+          />
+        ) : (
+          <div
+            className="absolute inset-0"
+            style={{ background: project.gradient }}
+            aria-hidden="true"
+          />
+        )}
 
-        <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-bg)]/60 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-bg)]/85 via-[var(--color-bg)]/20 to-black/30" />
+        <div
+          className="absolute inset-0 opacity-70 mix-blend-screen"
+          style={{ background: 'radial-gradient(circle at 85% 15%, rgba(var(--color-accent-rgb), 0.28), transparent 42%)' }}
+          aria-hidden="true"
+        />
 
-        <div className="absolute top-3 right-3">
+        <div className="absolute top-3 right-3 z-10">
           <span className={`
             font-mono text-[10px] tracking-widest uppercase
+            backdrop-blur-sm
             px-2 py-1 rounded-sm border
             ${STATUS_COLORS[project.status]}
           `}>
@@ -101,7 +123,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           </span>
         </div>
 
-        <div className="absolute bottom-3 left-4">
+        <div className="absolute bottom-3 left-4 z-10">
           <span className="label-mono">{project.year}</span>
         </div>
       </div>

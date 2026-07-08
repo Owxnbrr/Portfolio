@@ -73,6 +73,7 @@ export type Project = {
     github?: string
   }
   gradient: string
+  coverImage?: string
   caseStudy?: CaseStudy
 }
 
@@ -117,6 +118,30 @@ export const SERVICES: Service[] = [
 
 export const PROJECTS: Project[] = [
   {
+  id: 'bat-manager',
+  hash: 'batm26',
+  title: 'BAT Manager',
+  description: 'SaaS interne de gestion de BAT pour imprimerie : projets, clients, validation publique, signature, notifications et suivi de livraison.',
+  longDescription: `BAT Manager est une application SaaS développée pour centraliser la gestion des BAT en imprimerie.
+L’outil permet de gérer les clients, dossiers, projets, versions PDF, liens publics de validation, signatures, statuts de production, relances et notifications.`,
+  tags: ['Dashboard', 'Validation BAT', 'Signature', 'Notifications', 'Appwrite'],
+  stack: [
+  'Next.js',
+  'TypeScript',
+  'Tailwind CSS',
+  'Appwrite',
+  'Node.js',
+  'SMTP',
+  'Vercel',
+  ],
+  type: 'fullstack',
+  status: 'terminé',
+  year: 2026,
+  links: {},
+  gradient: 'linear-gradient(135deg, #07111F 0%, #0EA5E9 48%, #111827 100%)',
+  coverImage: '/projects/bat-manager.png',
+},
+  {
   id: 'ipp-election',
   hash: 'ippel26',
   title: 'IPP Election',
@@ -143,6 +168,7 @@ Le travail a porté sur la lisibilité, la confiance et la fluidité d’un parc
     github: 'https://github.com/Owxnbrr/ipp-election',
   },
   gradient: 'linear-gradient(135deg, #0F172A 0%, #1D4ED8 100%)',
+  coverImage: '/projects/ipp-election.png',
   caseStudy: {
     duration: '2 semaines',
     role: 'Développeur fullstack solo',
@@ -219,6 +245,7 @@ Objectif : aider les visiteurs à explorer rapidement les collections, comprendr
     github: 'https://github.com/Owxnbrr/Boutique-Objet-Publicit-IPP',
   },
   gradient: 'linear-gradient(135deg, #0EA5E9 0%, #0B1A2A 100%)',
+  coverImage: '/projects/ippcom-goodies.png',
 
   caseStudy: {
     duration: '3 semaines',
@@ -415,10 +442,10 @@ export const SKILLS: SkillGroup[] = [
     id: 'frontend',
     label: 'FRONTEND_',
     skills: [
-      { name: 'React', icon: 'Re', level: '// daily', projects: ['ipp-election', 'ippcom-goodies'] },
-      { name: 'Next.js', icon: 'Nx', level: '// daily', projects: ['ipp-election', 'ippcom-goodies'] },
-      { name: 'TypeScript', icon: 'TS', level: '// daily', projects: ['ipp-election', 'ippcom-goodies'] },
-      { name: 'Tailwind CSS', icon: 'TW', level: '// daily', projects: ['ipp-election', 'ippcom-goodies'] },
+      { name: 'React', icon: 'Re', level: '// daily', projects: ['bat-manager', 'ipp-election', 'ippcom-goodies'] },
+      { name: 'Next.js', icon: 'Nx', level: '// daily', projects: ['bat-manager', 'ipp-election', 'ippcom-goodies'] },
+      { name: 'TypeScript', icon: 'TS', level: '// daily', projects: ['bat-manager', 'ipp-election', 'ippcom-goodies'] },
+      { name: 'Tailwind CSS', icon: 'TW', level: '// daily', projects: ['bat-manager', 'ipp-election', 'ippcom-goodies'] },
       { name: 'CSS / SCSS', icon: 'Cs', level: '// daily' },
       { name: 'HTML Semantic', icon: 'Ht', level: '// daily' },
       { name: 'Responsive Design', icon: 'Rs', level: '// daily' },
@@ -429,7 +456,8 @@ export const SKILLS: SkillGroup[] = [
     id: 'backend',
     label: 'BACKEND_',
     skills: [
-      { name: 'Node.js', icon: 'Nd', level: '// daily', projects: ['ipp-election', 'ippcom-goodies'] },
+      { name: 'Node.js', icon: 'Nd', level: '// daily', projects: ['bat-manager', 'ipp-election', 'ippcom-goodies'] },
+      { name: 'Appwrite', icon: 'Aw', level: '// familiar', projects: ['bat-manager'] },
       { name: 'Supabase', icon: 'Sb', level: '// daily', projects: ['ipp-election', 'ippcom-goodies'] },
       { name: 'PostgreSQL', icon: 'Pg', level: '// daily', projects: ['ipp-election', 'ippcom-goodies'] },
       { name: 'WordPress', icon: 'Wp', level: '// familiar' },
