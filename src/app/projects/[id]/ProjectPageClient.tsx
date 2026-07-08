@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useState } from 'react'
-import type { Project } from '@/data/portfolio'
+import type { CaseStudyItem, Project } from '@/data/portfolio'
 import { ArchitectureDiagram } from '@/components/ArchitectureDiagram'
 import { ScrollProgress } from '@/components/ScrollProgress'
 import { Header } from '@/components/Header'
@@ -35,6 +35,8 @@ const STATUS_COLORS = {
 
 export function ProjectPageClient({ project, prevProject, nextProject }: Props) {
   const cs = project.caseStudy
+  let caseSectionIndex = 1
+  const nextCaseLabel = () => String(caseSectionIndex++).padStart(2, '0')
 
   return (
     <>
@@ -113,8 +115,8 @@ export function ProjectPageClient({ project, prevProject, nextProject }: Props) 
               <div className="flex flex-wrap gap-6 mb-8">
                 {cs && (
                   <>
-                    <MetaItem label="durée" value={cs.duration} />
-                    <MetaItem label="rôle" value={cs.role} />
+                    {cs.duration && <MetaItem label="durée" value={cs.duration} />}
+                    {cs.role && <MetaItem label="rôle" value={cs.role} />}
                   </>
                 )}
                 <MetaItem label="type" value={project.type} />
@@ -154,7 +156,7 @@ export function ProjectPageClient({ project, prevProject, nextProject }: Props) 
           <div className="container-main py-16 space-y-20 max-w-[900px]">
 
             {/* ── 1. CONTEXTE & PROBLÈME ───────────────── */}
-            <CaseSection id="context" label="01" title="Contexte & Problème">
+            <CaseSection id="context" label={nextCaseLabel()} title="Contexte & Problème">
               <div className="space-y-8">
 
                 {/* Situation */}
@@ -194,9 +196,17 @@ export function ProjectPageClient({ project, prevProject, nextProject }: Props) 
               </div>
             </CaseSection>
 
+            {cs.solution && (
+              <CaseSection id="solution" label={nextCaseLabel()} title="Solution">
+                <p className="text-base text-[var(--color-muted)] leading-relaxed">
+                  {cs.solution}
+                </p>
+              </CaseSection>
+            )}
+
             {/* ── 2. ARCHITECTURE ──────────────────────── */}
             {cs.architecture && (
-              <CaseSection id="architecture" label="02" title="Architecture">
+              <CaseSection id="architecture" label={nextCaseLabel()} title="Architecture">
                 <div className="space-y-8">
                   <p className="text-base text-[var(--color-muted)] leading-relaxed">
                     {cs.architecture.description}
@@ -206,9 +216,47 @@ export function ProjectPageClient({ project, prevProject, nextProject }: Props) 
               </CaseSection>
             )}
 
+            {cs.features && cs.features.length > 0 && (
+              <CaseSection id="features" label={nextCaseLabel()} title="Fonctionnalités principales">
+                <CaseItemGrid items={cs.features} />
+              </CaseSection>
+            )}
+
+            {cs.journey && cs.journey.length > 0 && (
+              <CaseSection id="journey" label={nextCaseLabel()} title="Parcours">
+                <CaseItemGrid items={cs.journey} />
+              </CaseSection>
+            )}
+
+            {cs.highlights && cs.highlights.length > 0 && (
+              <CaseSection id="highlights" label={nextCaseLabel()} title="Points forts">
+                <CaseBulletList items={cs.highlights} />
+              </CaseSection>
+            )}
+
+            {cs.outcome && (
+              <CaseSection id="outcome" label={nextCaseLabel()} title="Résultat">
+                <p className="text-base text-[var(--color-muted)] leading-relaxed">
+                  {cs.outcome}
+                </p>
+              </CaseSection>
+            )}
+
+            {cs.metrics && cs.metrics.length > 0 && (
+              <CaseSection id="metrics" label={nextCaseLabel()} title="Chiffres projet">
+                <CaseBulletList items={cs.metrics} />
+              </CaseSection>
+            )}
+
+            {cs.limitations && cs.limitations.length > 0 && (
+              <CaseSection id="limitations" label={nextCaseLabel()} title="Limites & recul critique">
+                <CaseBulletList items={cs.limitations} />
+              </CaseSection>
+            )}
+
             
             {cs.video && (
-              <CaseSection id="video" label="03" title="Motion / Vidéo">
+              <CaseSection id="video" label={nextCaseLabel()} title="Motion / Vidéo">
                 <div className="space-y-4">
                   {cs.video.title && (
                     <p className="label-mono">{`// ${cs.video.title}`}</p>
@@ -238,7 +286,7 @@ export function ProjectPageClient({ project, prevProject, nextProject }: Props) 
 
             {/* ── 3. SCREENSHOTS ───────────────────────── */}
             {cs.screenshots && cs.screenshots.length > 0 && (
-              <CaseSection id="screenshots" label="03" title="Visuels">
+              <CaseSection id="screenshots" label={nextCaseLabel()} title="Visuels">
                 <div className="space-y-6">
                   {cs.screenshots.map((shot, i) => (
                     <ScreenshotBlock key={i} shot={shot} index={i} gradient={project.gradient} />
@@ -335,6 +383,49 @@ function CaseSection({
       </div>
       {children}
     </section>
+  )
+}
+
+function CaseItemGrid({ items }: { items: CaseStudyItem[] }) {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      {items.map((item, index) => (
+        <article
+          key={item.title}
+          className="p-5 rounded-md border border-[var(--color-border)] bg-[var(--color-surface)]"
+        >
+          <p className="label-mono mb-3 text-[var(--color-accent)]/70">
+            {`item_${String(index + 1).padStart(2, '0')}`}
+          </p>
+          <h3 className="font-display font-semibold text-lg text-[var(--color-text)] mb-2">
+            {item.title}
+          </h3>
+          <p className="text-sm text-[var(--color-muted)] leading-relaxed">
+            {item.description}
+          </p>
+        </article>
+      ))}
+    </div>
+  )
+}
+
+function CaseBulletList({ items }: { items: string[] }) {
+  return (
+    <ul className="grid grid-cols-1 md:grid-cols-2 gap-3" role="list">
+      {items.map((item, index) => (
+        <li
+          key={item}
+          className="flex items-start gap-3 p-4 rounded-md border border-[var(--color-border)] bg-[var(--color-surface)]"
+        >
+          <span className="font-mono text-xs text-[var(--color-accent)] mt-[3px] shrink-0 select-none">
+            [{String(index + 1).padStart(2, '0')}]
+          </span>
+          <span className="text-sm text-[var(--color-muted)] leading-relaxed">
+            {item}
+          </span>
+        </li>
+      ))}
+    </ul>
   )
 }
 

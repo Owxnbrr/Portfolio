@@ -40,12 +40,24 @@ export type ProjectVideo = {
   caption?: string
   poster?: string
 }
+export type CaseStudyItem = {
+  title: string
+  description: string
+}
 export type CaseStudy = {
   context: {
     situation: string   
     problem: string      
     goals: string[]  
   }
+
+  solution?: string
+  features?: CaseStudyItem[]
+  journey?: CaseStudyItem[]
+  highlights?: string[]
+  outcome?: string
+  limitations?: string[]
+  metrics?: string[]
 
   architecture?: {
     description: string
@@ -54,8 +66,8 @@ export type CaseStudy = {
 
   video?: ProjectVideo
   screenshots?: ProjectScreenshot[]
-  duration: string    
-  role: string   
+  duration?: string    
+  role?: string   
 }
 export type Project = {
   id: string
@@ -121,17 +133,22 @@ export const PROJECTS: Project[] = [
   id: 'bat-manager',
   hash: 'batm26',
   title: 'BAT Manager',
-  description: 'SaaS interne de gestion de BAT pour imprimerie : projets, clients, validation publique, signature, notifications et suivi de livraison.',
-  longDescription: `BAT Manager est une application SaaS développée pour centraliser la gestion des BAT en imprimerie.
-L’outil permet de gérer les clients, dossiers, projets, versions PDF, liens publics de validation, signatures, statuts de production, relances et notifications.`,
-  tags: ['Dashboard', 'Validation BAT', 'Signature', 'Notifications', 'Appwrite'],
+  description: 'SaaS métier pour imprimeries permettant de centraliser les projets d’impression, les versions de BAT, la validation client, la signature, les relances et le suivi de production.',
+  longDescription: `BAT Manager est une application web métier conçue pour les imprimeries, studios graphiques, agences de communication et équipes PAO.
+L’objectif est de remplacer les échanges dispersés par email par un processus centralisé : création de projet, dépôt du fichier, génération du BAT, validation publique par le client, signature, relances, remise de commande, livraison ou expédition.`,
+  tags: ['SaaS', 'Dashboard', 'Appwrite', 'Validation BAT', 'Signature client', 'Workflow métier', 'Notifications', 'SMTP', 'Versioning PDF'],
   stack: [
-  'Next.js',
+  'Next.js 14',
+  'React 18',
   'TypeScript',
   'Tailwind CSS',
+  'Radix UI',
+  'Lucide React',
   'Appwrite',
-  'Node.js',
+  'Node Appwrite SDK',
+  'Nodemailer',
   'SMTP',
+  'Appwrite Realtime',
   'Vercel',
   ],
   type: 'fullstack',
@@ -140,6 +157,110 @@ L’outil permet de gérer les clients, dossiers, projets, versions PDF, liens p
   links: {},
   gradient: 'linear-gradient(135deg, #07111F 0%, #0EA5E9 48%, #111827 100%)',
   coverImage: '/projects/bat-manager.png',
+  caseStudy: {
+    context: {
+      situation:
+        "BAT Manager est une application web métier conçue pour les imprimeries, studios graphiques, agences de communication et équipes PAO. L’objectif est de remplacer les échanges dispersés par email par un processus centralisé : création de projet, dépôt du fichier, génération du BAT, validation publique par le client, signature, relances, remise de commande, livraison ou expédition.",
+      problem:
+        "Dans un flux d’impression classique, les BAT sont souvent envoyés manuellement par email. Cela rend difficile l’identification de la bonne version, disperse les validations et commentaires dans plusieurs fils de discussion, complique le suivi des paramètres techniques validés et augmente le risque d’erreurs entre design, impression, quantité, finition et version.",
+      goals: [
+        'Centraliser les projets, fichiers BAT, validations et statuts de production',
+        'Donner au client un lien public simple pour consulter, valider et signer',
+        'Associer chaque validation à une version de fichier et à des paramètres techniques',
+        'Améliorer la traçabilité des emails, relances, livraisons et commandes fournisseurs',
+      ],
+    },
+    solution:
+      "BAT Manager rassemble toutes les informations autour d’un projet unique. L’équipe charge une version du fichier, renseigne les paramètres d’impression, transmet un lien public au client, puis suit chaque étape jusqu’à la signature finale. Le back-office conserve les versions, validations, envois d’emails, statuts, informations de livraison et commandes fournisseurs afin d’améliorer la traçabilité.",
+    architecture: {
+      description:
+        "Application Next.js structurée autour d’un back-office interne, d’un parcours public à jeton, de services Appwrite pour les données et fichiers, de routes serveur pour les opérations sensibles et d’un canal SMTP pour les envois de BAT et relances.",
+      diagram: {
+        nodes: [
+          { id: 'bo', label: 'Back-office', type: 'client' },
+          { id: 'public', label: 'Lien public client', type: 'client' },
+          { id: 'api', label: 'Routes serveur', type: 'server' },
+          { id: 'appwrite', label: 'Appwrite', type: 'service' },
+          { id: 'smtp', label: 'SMTP', type: 'service' },
+          { id: 'deploy', label: 'Vercel', type: 'infra' },
+        ],
+        edges: [
+          { from: 'bo', to: 'api', label: 'actions sensibles' },
+          { from: 'public', to: 'api', label: 'validation' },
+          { from: 'api', to: 'appwrite', label: 'data / fichiers' },
+          { from: 'api', to: 'smtp', label: 'emails' },
+          { from: 'deploy', to: 'bo', label: 'déploiement' },
+        ],
+      },
+    },
+    features: [
+      {
+        title: 'Gestion complète des projets',
+        description: 'Création de projets avec société, contact, dossier, template, devis, formats, quantité, papier, grammage, couleurs, finitions, prix HT et informations de livraison.',
+      },
+      {
+        title: 'Versioning des fichiers BAT',
+        description: 'Chaque nouveau fichier principal peut créer une version avec numéro, auteur, date, taille, type MIME et indicateur de version courante.',
+      },
+      {
+        title: 'Validation publique sans compte',
+        description: 'Le client reçoit un lien public unique pour consulter le BAT, valider le design, vérifier les paramètres d’impression, choisir le mode de remise et signer.',
+      },
+      {
+        title: 'Signature et traçabilité',
+        description: 'Le workflow conserve les décisions, commentaires, validations, signatures, partages publics et événements importants liés au projet.',
+      },
+      {
+        title: 'Emails et relances',
+        description: 'Envoi du BAT par SMTP, relance manuelle, journalisation des emails, notifications internes et préférences utilisateur.',
+      },
+      {
+        title: 'Livraison, expédition et fournisseurs',
+        description: 'Suivi du mode de remise, adresse de livraison, expédition avec transporteur, numéro de suivi et gestion de bons de commande fournisseurs.',
+      },
+    ],
+    journey: [
+      {
+        title: 'Back-office interne',
+        description: 'L’équipe crée le projet, ajoute les paramètres d’impression, importe le fichier principal, génère le BAT et suit les statuts jusqu’à la remise ou l’expédition.',
+      },
+      {
+        title: 'Lien public client',
+        description: 'Le client ouvre un lien sans compte, consulte la version exacte du document, valide ou demande des modifications, confirme les informations techniques puis signe.',
+      },
+      {
+        title: 'Suivi production',
+        description: 'Les validations, commentaires, versions, emails, statuts de livraison et commandes fournisseurs restent reliés au projet.',
+      },
+    ],
+    highlights: [
+      'Workflow très spécialisé pour le métier de l’impression',
+      'Lien public sans friction pour le client',
+      'Association explicite entre une version de fichier et un BAT',
+      'Snapshot des paramètres techniques au moment de la validation',
+      'Gestion des sociétés à plusieurs contacts',
+      'Prise en charge des devis, versions, livraison, expédition et fournisseurs',
+      'Typage TypeScript centralisé',
+      'Routes serveur pour les opérations sensibles',
+    ],
+    outcome:
+      "Le projet dépasse une simple maquette : il contient un back-office métier, des services Appwrite, des routes serveur protégées, des parcours publics à jeton et plusieurs workflows cohérents. C’est un MVP avancé proche d’un produit métier pilote.",
+    limitations: [
+      'Le projet nécessite encore une industrialisation avant commercialisation SaaS complète.',
+      'Le schéma Appwrite doit être fiabilisé et documenté.',
+      'Des tests automatisés, une CI/CD, du monitoring et une stratégie de sauvegarde restent à mettre en place.',
+      'La facturation SaaS n’est pas encore connectée.',
+      'La signature canvas doit être présentée comme une preuve applicative, pas comme une signature électronique qualifiée.',
+    ],
+    metrics: [
+      '152 fichiers source, configuration et documentation',
+      '17 pages Next.js',
+      '13 routes API',
+      '56 composants TSX sous components',
+      '39 fichiers métier sous features',
+      'Environ 30 374 lignes de code TS/TSX/JS/CSS',
+    ],
+  },
 },
   {
   id: 'ipp-election',
